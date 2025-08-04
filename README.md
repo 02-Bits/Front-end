@@ -26,7 +26,6 @@ Toda a interface e a experiência do usuário foram desenhadas no Figma. Você p
     <img src="https://img.shields.io/badge/Figma-Acessar%20Protótipo-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Link para o Figma">
   </a>
 </p>
------
 
 ## 🎯 Funcionalidades
 
