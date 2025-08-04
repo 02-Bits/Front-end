@@ -136,7 +136,7 @@ Este projeto é o resultado da colaboração de uma equipe dedicada e multidisci
 | Área | Membro | GitHub |
 |---|---|---|
 | **Frontend** | Iasmin | [@iasmimi](https://www.google.com/search?q=https://github.com/iasmimi) |
-| **Frontend**| Irunael | [@irunael](https://www.google.com/search?q=https://github.com/irunael) |
+| **Frontend**| Pedro | [@irunael](https://www.google.com/search?q=https://github.com/irunael) |
 | **Frontend** | Ruan | [@ruanzinDoCorte](https://www.google.com/search?q=https://github.com/ruanzinDoCorte) |
 | **Backend** | João Nascimento | [@JoaoNascimento1802](https://github.com/JoaoNascimento1802) |
 | **Backend** | Felipe Araújo | [@fearaujo293](https://github.com/fearaujo293) |
