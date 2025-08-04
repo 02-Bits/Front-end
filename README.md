@@ -21,11 +21,11 @@ O **Pet Vita** é uma plataforma completa projetada para otimizar a conexão ent
 
 Toda a interface e a experiência do usuário foram desenhadas no Figma. Você pode visualizar o protótipo interativo no link abaixo:
 
-\<p\>
-\<a href="[https://www.figma.com/design/GCRkFTTW0hr3UdMFRrHoNd/Projeto?node-id=843-915\&t=jUizeat6xWeSvUSb-0](https://www.figma.com/design/GCRkFTTW0hr3UdMFRrHoNd/Projeto?node-id=843-915&t=jUizeat6xWeSvUSb-0)"\>
-\<img src="[https://img.shields.io/badge/Figma-Acessar%20Protótipo-F24E1E?style=for-the-badge\&logo=figma\&logoColor=white](https://img.shields.io/badge/Figma-Acessar%20Protótipo-F24E1E?style=for-the-badge&logo=figma&logoColor=white)" alt="Link para o Figma"\>
-\</a\>
-\</p\>
+<p\>
+<a href="[https://www.figma.com/design/GCRkFTTW0hr3UdMFRrHoNd/Projeto?node-id=843-915\&t=jUizeat6xWeSvUSb-0](https://www.figma.com/design/GCRkFTTW0hr3UdMFRrHoNd/Projeto?node-id=843-915&t=jUizeat6xWeSvUSb-0)"\>
+<img src="[https://img.shields.io/badge/Figma-Acessar%20Protótipo-F24E1E?style=for-the-badge\&logo=figma\&logoColor=white](https://img.shields.io/badge/Figma-Acessar%20Protótipo-F24E1E?style=for-the-badge&logo=figma&logoColor=white)" alt="Link para o Figma"\>
+</a\>
+</p\>
 
 -----
 
