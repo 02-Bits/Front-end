@@ -1,6 +1,4 @@
-Com certeza\! Aqui está uma versão do `README.md` focada exclusivamente no **Frontend** do projeto Pet Vita, utilizando as informações fornecidas e adaptando as seções técnicas para um ambiente React/React Native.
 
------
 
 # 🚀 Pet Vita - Frontend
 
