@@ -1,0 +1,298 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 90px;
+}
+
+.nav {
+  display: flex; 
+  justify-content: flex-start; 
+  align-items: center; 
+  gap: 20px;
+  color: black;
+}
+
+.nav a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  position: relative;
+  padding-bottom: 5px; 
+}
+
+.nav .nav_link.active {
+  color: #B77EFF;
+  font-weight: bold;
+}
+
+.nav_link {
+  color: #B77EFF; 
+}
+
+.nav_link:hover::after,
+.nav_link.active::after {
+  content: ''; 
+  position: absolute; 
+  left: 0;
+  bottom: 0; 
+  width: 100%; 
+  height: 4px; 
+  background-color: #B77EFF; 
+  border-radius: 10px;
+}
+
+.nav_link.active::after {
+  background-color: #B77EFF; 
+}
+
+.auth {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  background: #B77EFF;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal-container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+  }
+  
+  .modal.active .modal-container {
+    transform: translateY(0);
+  }
+  
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.2s;
+  }
+  
+  .close:hover {
+    color: #B77EFF;
+  }
+  
+  /* Estilos específicos para os modais */
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    gap: 20px;
+  }
+  
+  .button-group .button {
+    background-color: #E0C8F5;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  
+  .button-group .button.active {
+    background-color: #7015E3;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: "Geologica", sans-serif;
+    transition: border-color 0.3s;
+  }
+  
+  .input-group input:focus {
+    border-color: #B77EFF;
+    outline: none;
+  }
+  
+  .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+  }
+  
+  .remember-me input {
+    margin-right: 8px;
+  }
+  
+  .remember-me label {
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    color: #333;
+  }
+  
+  .forgot-password a {
+    color: #DB2C2F;
+    font-size: 14px;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+  
+  .login-button {
+    background-color: #7015E3;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    font-family: "Poppins", sans-serif;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.3s;
+  }
+  
+  .login-button:hover {
+    background-color: #5a10b5;
+  }
+  
+  .links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .link-button {
+    background: none;
+    border: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.2s;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+  }
+  
+  .link-button:hover {
+    color: #B77EFF;
+    text-decoration: underline;
+  }
+  
+  .logo-modal {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo-modal img {
+    max-width: 120px;
+    height: auto;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      padding: 15px;
+      gap: 15px;
+    }
+    
+    .nav {
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .modal-container {
+      padding: 20px;
+      width: 95%;
+    }
+    
+    .button-group {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }

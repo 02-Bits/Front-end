@@ -1,0 +1,399 @@
+body {
+    font-family: "Geologica", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+#divulgacao {
+    padding: 50px 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px; 
+}
+
+#cara {
+    width: 50%;
+}
+
+#titulo {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    color: #4A4747;
+    font-size: 60px;
+    margin-top: 0;
+}
+
+#btn_consulta {
+    display: flex;
+    justify-content: left;
+    margin: 50px 0; 
+}
+
+#consulta {
+    padding: 15px 30px; 
+    color: white;
+    border: none;
+    background-color: #B77EFF;
+    font-size: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#info_quadro {
+  height: auto; 
+  width: 85%; 
+  max-width: 1200px; 
+  margin-top: 50px; 
+  border-radius: 10px;
+  background-color: #C49DF6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px; 
+  gap: 20px; 
+}
+
+#info_quadro_texto {
+  max-width: 400px; 
+}
+
+#info_quadro_texto h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 35px;
+  color: #000000;
+  margin-bottom: 50px;
+}
+
+#info_quadro_texto p {
+  font-family: "Geologica", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0,
+    "SHRP" 0;
+  font-size: 24px;
+  color: #000000;
+}
+
+#info_quadro_imagens {
+  position: relative;
+  width: 350px;
+  height: 250px;
+  display: flex;
+  align-items: flex-end; 
+}
+
+.imagem-cachorro {
+  width: 220px;
+  height: auto;
+  position: absolute;
+}
+
+.imagem-cachorro:nth-child(1) {
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.imagem-cachorro:nth-child(2) {
+  top: 40px;
+  left: 120px; 
+  z-index: 1;
+}
+
+#info_quadro_numeros {
+  width: 250px;
+  height: auto; 
+  border-radius: 29px;
+  background-color: #E0C8F5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.numero-item {
+  text-align: center;
+}
+
+.numero {
+  font-family: "Londrina Solid", sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  color: #FF8725;
+  display: block;
+}
+
+.label {
+  font-family: "Esteban", serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: #000;
+}
+
+#infos {
+    width: 92%; 
+    max-width: 1200px;  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; 
+    padding: 0 20px; 
+}
+
+#info_cell, #info_nos {
+    display: flex;
+    align-items: center; 
+    gap: 20px;
+    background-color: #C49DF6;
+    height: 250px;
+    width: 48%; 
+    padding: 20px; 
+    border-radius: 10px;
+}
+
+#info_cell_texto, #info_pontinhos_texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    gap: 15px; 
+    flex: 1; 
+}
+
+#info_cell_texto h4, #info_pontinhos_texto h4 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #F9EAEA;
+    margin: 0; 
+}
+
+#info_cell_texto p, #info_pontinhos_texto p {
+    font-family: "Geologica", sans-serif;
+    font-size: 20px;
+    color: #FCF3F3;
+    margin: 0; 
+}
+
+#info_cell_texto button, #info_pontinhos_texto button {
+    padding: 12px 24px;
+    color: white;
+    background-color: #B77EFF;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    width: fit-content; 
+}
+
+#info_cell_texto button:hover, #info_pontinhos_texto button:hover {
+    background-color: #A56DE0;
+}
+
+#cell img, #info_pontinhos img {
+    width: 150px; 
+    height: auto; 
+}
+
+  #quadro_imagens {
+    width: 90%;
+    max-width: 1200px;
+    background-color: #C49DF6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    border-radius: 10px;
+    margin: 50px auto;
+    gap: 20px;
+  }
+  
+  #texto_quadro_imagens {
+    width: 45%;
+  }
+  
+  #texto_quadro_imagens h4 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 35px;
+    color: #F9EAEA;
+  }
+  
+  #texto_quadro_imagens p {
+    font-family: "Geologica", sans-serif;
+    font-size: 20px;
+    color: #FCF3F3;
+    line-height: 1.6;
+  }
+  
+  #videos {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .carrossel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .carrossel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+  }
+  
+  .carrossel-item {
+    min-width: 100%;
+    flex-shrink: 0;
+  }
+  
+  .carrossel-item iframe {
+    width: 100%;
+    height: 315px;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    z-index: 10;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carrossel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  .carrossel-btn.anterior {
+    left: 15px;
+  }
+  
+  .carrossel-btn.proximo {
+    right: 15px;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    #quadro_imagens {
+      flex-direction: column;
+    }
+    
+    #texto_quadro_imagens, 
+    #videos {
+      width: 100%;
+    }
+    
+    #texto_quadro_imagens {
+      margin-bottom: 30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .carrossel-item iframe {
+      height: 250px;
+    }
+    
+    .carrossel-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 20px;
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .carrossel-item iframe {
+      height: 200px;
+    }
+    
+    #quadro_imagens {
+      padding: 25px;
+    }
+    
+    #texto_quadro_imagens h4 {
+      font-size: 28px;
+    }
+    
+    #texto_quadro_imagens p {
+      font-size: 16px;
+    }
+  }
+
+  #card_sentimento {
+    width: 90%; 
+    max-width: 1200px; 
+    background-color: #C49DF6;
+    height: auto; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    border-radius: 10px;
+    margin: 50px auto; 
+    gap: 20px; 
+}
+
+#card_sentimento_texto {
+    width: 50%; 
+}
+
+#card_sentimento_texto h4 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #F9EAEA;
+    margin-bottom: 20px;
+}
+
+#card_sentimento_texto p {
+    font-family: "Geologica", sans-serif;
+    font-size: 18px;
+    color: #FCF3F3;
+    line-height: 1.6;
+}
+
+#card_sentimento_texto p span {
+    font-weight: bold;
+    color: #4a4747; 
+}
+
+#card_sentimento_imagem {
+    width: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#card_sentimento_imagem img {
+    width: 100%;
+    max-width: 400px; 
+    border-radius: 10px;
+}

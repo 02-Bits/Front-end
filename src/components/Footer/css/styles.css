@@ -1,0 +1,126 @@
+.footer-container {
+  background-color: #ffffff;
+  color: #333333;
+  padding: 40px 0;
+  border-top: 1px solid #e0e0e0;
+  width: 100%;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 50px; /* Alinhamento com o header */
+  gap: 30px;
+}
+
+.footer-logo,
+.footer-links,
+.footer-contact,
+.footer-social {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.footer-logo img {
+  width: 110px; 
+  height: auto;
+  margin-top: 30px;
+}
+
+.footer-logo p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+}
+
+/* Cores dos títulos ajustadas para #C49DF6 */
+.footer-links h6,
+.footer-contact h6,
+.footer-social h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #C49DF6; /* Cor alterada para #C49DF6 */
+  margin-bottom: 20px;
+}
+
+.footer-links ul,
+.footer-contact ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li,
+.footer-contact li {
+  margin-bottom: 10px;
+}
+
+.footer-links a,
+.footer-contact a {
+  text-decoration: none;
+  color: #666666;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+  color: #B77EFF;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+}
+
+.social-icons a:hover {
+  transform: translateY(-3px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 20px;
+  }
+  
+  .footer-logo,
+  .footer-links,
+  .footer-contact,
+  .footer-social {
+    min-width: 100%;
+  }
+  
+  .footer-logo {
+    align-items: center;
+    text-align: center;
+  }
+}

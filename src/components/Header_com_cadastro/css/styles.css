@@ -1,0 +1,154 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px; /* Reduzi o padding vertical para combinar com o segundo header */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    background: white;
+    z-index: 100;
+    height: 110px; /* Altura fixa para corresponder ao segundo header */
+    box-sizing: border-box; /* Garante que o padding não some à altura total */
+  }
+  
+  /* Logo Styles - Ajustado para a nova altura */
+  .logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex: 10%;
+  }
+  
+  .logo img {
+    width: 90px;
+  }
+  
+  /* Navigation Styles - CENTRALIZADO COMO NO SEGUNDO EXEMPLO */
+  .nav {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 20px;
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+  }
+  
+  .nav .nav_link.active {
+    color: #B77EFF;
+    font-weight: bold;
+  }
+  
+  .nav_link {
+    color: #B77EFF;
+  }
+  
+  .nav_link:hover::after,
+  .nav_link.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #B77EFF;
+    border-radius: 10px;
+  }
+  
+  /* Profile Container Styles */
+  .profile-container {
+    margin-left: auto;
+    position: relative;
+  }
+  
+  /* Profile Icon Styles */
+  .profile-icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Adicionado para melhor controle */
+  }
+  
+  .profile-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #E0C8F5;
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-icon:hover img {
+    transform: scale(1.1);
+  }
+  
+  /* Dropdown Menu Styles - POSICIONAMENTO CORRIGIDO */
+  .dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 100%; /* Posiciona exatamente abaixo do ícone */
+    margin-top: 10px; /* Espaçamento adicional */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 180px;
+    z-index: 100;
+    overflow: hidden;
+  }
+  
+  /* Restante do CSS permanece igual */
+  
+  .dropdown-item {
+    display: block;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #F5F0FF;
+    color: #7015E3;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      padding: 15px;
+      gap: 15px;
+    }
+    
+    .nav {
+      position: static;
+      transform: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .profile-container {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+    
+    .dropdown-menu {
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
