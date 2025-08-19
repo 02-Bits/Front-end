@@ -1,0 +1,304 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 90px;
+}
+
+.nav {
+  display: flex; 
+  justify-content: flex-start; 
+  align-items: center; 
+  gap: 20px;
+  color: black;
+}
+
+.nav a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  position: relative;
+  padding-bottom: 5px; 
+}
+
+.nav .nav_link.active {
+  color: #B77EFF;
+  font-weight: bold;
+}
+
+.nav_link {
+  color: #B77EFF; 
+}
+
+.nav_link:hover::after,
+.nav_link.active::after {
+  content: ''; 
+  position: absolute; 
+  left: 0;
+  bottom: 0; 
+  width: 100%; 
+  height: 4px; 
+  background-color: #B77EFF; 
+  border-radius: 10px;
+}
+
+.nav_link.active::after {
+  background-color: #B77EFF; 
+}
+
+.auth {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Aumentei o gap entre os botões */
+}
+
+.button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  background: #B77EFF;
+  color: white;
+  padding: 12px 28px; /* Aumentei o padding (era 10px 20px) */
+  border-radius: 25px; /* Aumentei o border-radius (era 20px) */
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 1.0rem; /* Aumentei ligeiramente o tamanho da fonte */
+  transition: all 0.3s ease; /* Adicionei transição para efeitos hover */
+  box-shadow: 0 4px 8px rgba(183, 126, 255, 0.3); /* Sombra sutil */
+}
+
+.button:hover {
+  background: #9D5AFF; /* Cor mais escura no hover */
+  transform: translateY(-2px); /* Efeito de levantar */
+  box-shadow: 0 6px 12px rgba(183, 126, 255, 0.4); /* Sombra mais intensa no hover */
+}
+
+.button:active {
+  transform: translateY(0); /* Efeito de pressionar */
+}
+
+/* Estilos para os modais */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Estilos específicos para os modais de login */
+.modal-container {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  width: 150%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.close:hover {
+  color: #B77EFF;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+  }
+  
+  .nav {
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .modal-container {
+    padding: 20px;
+    width: 95%;
+  }
+}
+
+.footer-container {
+  background-color: #ffffff;
+  color: #333333;
+  padding: 40px 0;
+  border-top: 1px solid #e0e0e0;
+  width: 100%;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Adicionei a mesma sombra do header, mas invertida */
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 50px; /* Alinhamento com o header */
+  gap: 50px; /* Aumentei o espaçamento entre as divs */
+}
+
+.footer-logo,
+.footer-links,
+.footer-contact,
+.footer-social {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.footer-logo img {
+  width: 90px; /* Diminui o tamanho da logo (era 110px) */
+  height: auto;
+  margin-top: 30px;
+}
+
+.footer-logo p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+}
+
+/* Cores dos títulos ajustadas para #C49DF6 */
+.footer-links h6,
+.footer-contact h6,
+.footer-social h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #C49DF6; /* Cor alterada para #C49DF6 */
+  margin-bottom: 20px;
+}
+
+.footer-links ul,
+.footer-contact ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li,
+.footer-contact li {
+  margin-bottom: 10px;
+}
+
+.footer-links a,
+.footer-contact a {
+  text-decoration: none;
+  color: #666666;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+  color: #B77EFF;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 20px; /* Aumentei o espaçamento entre os ícones */
+}
+
+.social-icons a {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.social-icons img {
+  width: 32px; /* Aumentei o tamanho dos ícones (era 24px) */
+  height: 32px; /* Aumentei o tamanho dos ícones (era 24px) */
+}
+
+.social-icons a:hover {
+  transform: translateY(-3px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 40px; /* Aumentei o espaçamento também no mobile */
+    padding: 0 20px;
+  }
+  
+  .footer-logo,
+  .footer-links,
+  .footer-contact,
+  .footer-social {
+    min-width: 100%;
+  }
+  
+  .footer-logo {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .social-icons {
+    justify-content: center;
+    gap: 25px; /* Aumentei o espaçamento entre os ícones no mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-content {
+    gap: 35px;
+  }
+  
+  .social-icons {
+    gap: 20px;
+  }
+  
+  .social-icons img {
+    width: 28px; /* Tamanho ligeiramente menor em telas muito pequenas */
+    height: 28px;
+  }
+}

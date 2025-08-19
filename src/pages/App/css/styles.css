@@ -1,0 +1,225 @@
+.app-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+.section {
+  text-align: center;
+  padding: 2rem;
+  flex: 1;
+}
+
+.app-title {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 3rem;
+}
+
+.app-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin: 2rem auto; /* Ajuste a margem vertical e centraliza horizontalmente */
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+  background: #C49DF6;
+  padding: 3rem 2rem; 
+  border-radius: 2rem; 
+  position: relative; 
+  max-width: 1200px; /* Adiciona uma largura máxima */
+  width: 90%; /* Ocupa 90% da largura do container pai */
+}
+
+.app-preview.second-screen {
+  flex-direction: row-reverse;
+}
+
+.app-preview::before {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background-size: cover;
+  z-index: 0;
+}
+
+.app-phone {
+  max-width: 250px;
+  height: auto;
+  border-radius: 2rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); 
+  transition: transform 0.3s ease;
+  z-index: 1; 
+}
+
+.app-phone:hover {
+  transform: scale(1.03);
+}
+
+.text-box {
+  background: #F0E5FF;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  max-width: 25rem;
+  z-index: 1; 
+}
+
+.text-box h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: black;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.arrow {
+  font-size: 2.5rem;
+  color: #7B61FF;
+  margin: 2rem 0;
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+}
+
+.cta-button {
+  margin: 3rem auto;
+  padding: 1rem 2.5rem;
+  background: #7B61FF;
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1rem rgba(123, 97, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #6a50e8;
+  transform: translateY(-0.2rem);
+  box-shadow: 0 0.7rem 1.2rem rgba(123, 97, 255, 0.4);
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 4rem auto;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.05);
+  max-width: 18rem;
+  transition: transform 0.3s ease;
+}
+
+.stat:hover {
+  transform: translateY(-0.5rem);
+}
+
+.icon {
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat h2 {
+  color: #7B61FF;
+  font-size: 2rem;
+  margin: 0.5rem 0;
+  line-height: 1.2;
+}
+
+.stat p {
+  color: #666;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  background: #D9D6F9;
+  border-radius: 50%;
+  margin: 4rem auto 0;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1rem); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(1rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animated-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@media (max-width: 768px) {
+  .app-preview {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .app-title {
+    font-size: 2rem;
+  }
+  
+  .text-box {
+    padding: 1.5rem;
+  }
+  
+  .stats {
+    gap: 2rem;
+  }
+  
+  .stat {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 1.5rem;
+  }
+  
+  .app-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  
+  .app-phone {
+    max-width: 80%;
+  }
+  
+  .text-box h3 {
+    font-size: 1.2rem;
+  }
+  
+  .cta-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .stat h2 {
+    font-size: 1.5rem;
+  }
+}

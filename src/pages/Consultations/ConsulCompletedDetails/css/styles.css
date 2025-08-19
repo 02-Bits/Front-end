@@ -1,0 +1,120 @@
+/* Seção do médico integrada */
+.doctor-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.rating-title {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.doctor-rating-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background-color: #8D7EFB;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.doctor-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.doctor-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+}
+
+.doctor-details h4 {
+  margin: 0;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.doctor-details p {
+  margin: 5px 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+}
+
+.rating-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.stars {
+  display: flex;
+  gap: 10px;
+}
+
+.star-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.star {
+  font-size: 2rem;
+  color: #e0e0e0;
+}
+
+.star.filled {
+  color: #FFD700;
+}
+
+.submit-rating {
+  background-color: white;
+  color: #8D7EFB;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-rating:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .doctor-rating-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .rating-controls {
+    align-items: center;
+    margin-top: 15px;
+  }
+  
+  .doctor-info {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .doctor-avatar {
+    width: 70px;
+    height: 70px;
+  }
+}

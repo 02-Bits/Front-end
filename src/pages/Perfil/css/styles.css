@@ -1,0 +1,176 @@
+.profile-container {
+    max-width: 900px;
+    margin: 2% auto;
+    padding: 30px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .profile-header h1 {
+    color: #333;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  
+  .profile-content {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .profile-picture-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .profile-picture-container {
+    position: relative;
+    width: 180px;
+    height: 180px;
+  }
+  
+  .profile-picture {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #B77EFF;
+    box-shadow: 0 4px 12px rgba(183, 126, 255, 0.3);
+  }
+  
+  .profile-picture-edit {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: white;
+    border-radius: 50%;
+    padding: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
+  .edit-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .profile-info-section {
+    flex: 2;
+  }
+  
+  .profile-row {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 20px;
+  }
+  
+  .profile-field {
+    flex: 1;
+  }
+  
+  .profile-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .info-field, .password-field {
+    padding: 12px 15px;
+    background-color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-field input.info-field {
+    width: 90%;
+    background-color: #f9f9f9;
+    border: 1px solid #B77EFF;
+  }
+  
+  .password-field {
+    letter-spacing: 2px;
+    background-color: #f5f5f5;
+  }
+  
+  .profile-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .edit-button, .logout-button,
+  .save-button, .cancel-button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .edit-button {
+    background-color: #B77EFF;
+    color: white;
+  }
+  
+  .edit-button:hover {
+    background-color: #9d5eff;
+  }
+  
+  .logout-button {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .logout-button:hover {
+    background-color: #d32f2f;
+  }
+  
+  .save-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .cancel-button {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .profile-content {
+      flex-direction: column;
+      gap: 30px;
+    }
+    
+    .profile-row {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .profile-picture-container {
+      width: 150px;
+      height: 150px;
+    }
+    
+    .profile-actions {
+      justify-content: center;
+    }
+  }
