@@ -9,7 +9,7 @@ import { Image } from 'react-native';
 // Suas telas originais
 import HomeScreen from './src/screens/HomeScreen';
 import PetList from './src/screens/PetList';
-import AddPetScreen from './src/screens/AddPetScreen';
+import AddPetScreen from './src/screens/AgendamentoScreen.jsx';
 import PetsScreen from './src/screens/Petscreen';  // Tela de detalhes do pet
 import FavoritesScreen from './src/screens/FavoritesScreen';
 import ConsultasScreen from './src/screens/VeterinarioScreen';
