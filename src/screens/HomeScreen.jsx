@@ -198,31 +198,31 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#C79DFD',
   },
   header: {
-    backgroundColor: '#FFE4B5', // Adjusted to a softer and less orange yellow
+    backgroundColor: '#C49DF6',
     padding: 25,
     alignItems: 'center',
     borderBottomWidth: 2,
-    borderBottomColor: '#FFDAB9', // Updated border color to match the softer yellow
+    borderBottomColor: '#8D7EFB',
   },
   title: {
     fontSize: 26, // Slightly larger font size for better readability
     fontWeight: 'bold',
-    color: '#333',
-    textShadowColor: '#FFA500', // Added text shadow for a subtle effect
+    color: '#8D7EFB',
+    textShadowColor: '#C49DF6',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
   },
   petCard: {
     flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#C79DFD',
     borderRadius: 15, // Increased border radius for a softer look
     padding: 20, // Increased padding for better spacing
     marginHorizontal: 20,
     marginTop: 20,
-    shadowColor: '#000',
+    shadowColor: '#A367F0',
     shadowOffset: { width: 0, height: 4 }, // Increased shadow for more depth
     shadowOpacity: 0.2,
     shadowRadius: 6,
@@ -236,15 +236,15 @@ const styles = StyleSheet.create({
   petName: {
     fontSize: 20, // Larger font size for better emphasis
     fontWeight: 'bold',
-    color: '#333',
+    color: '#A367F0',
   },
   petDetail: {
     fontSize: 16, // Slightly larger font size for better readability
-    color: '#666',
+    color: '#A367F0',
     marginTop: 4, // Increased margin for better spacing
   },
   addButton: {
-    backgroundColor: '#5B51EF',
+    backgroundColor: '#8D7EFB',
     borderRadius: 10,
     padding: 15,
     margin: 20,
@@ -270,12 +270,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   input: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#C79DFD',
     borderRadius: 5,
     padding: 10,
     marginBottom: 15,
     borderWidth: 1,
-    borderColor: '#DDD',
+    borderColor: '#C49DF6',
   },
   textArea: {
     backgroundColor: '#FFFFFF',
@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 20,
     borderWidth: 1,
-    borderColor: '#DDD',
+    borderColor: '#C49DF6',
     height: 100,
     textAlignVertical: 'top',
   },
@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   saveButton: {
-    backgroundColor: '#5B51EF',
+    backgroundColor: '#8D7EFB',
     borderRadius: 10,
     padding: 15,
     flex: 1,
@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   cancelButton: {
-    backgroundColor: '#FF6B6B',
+    backgroundColor: '#C49DF6',
     borderRadius: 10,
     padding: 15,
     flex: 1,

@@ -24,7 +24,7 @@ export const PetCard = ({ image, tipo, servico, horario }) => {
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: '#EBE4F4',
     marginVertical: 8,
     marginHorizontal: 16,
     padding: 10,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 12,
-    color: '#666',
+    color: '#C49DF6',
     fontWeight: '600',
   },
   value: {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   arrow: {
     fontSize: 24,
-    color: '#5B51EF',
+    color: '#A367F0',
     paddingHorizontal: 8,
   },
 });

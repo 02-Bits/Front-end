@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#EBE4F4',
   },
   text: {
     fontSize: 18,
-    color: '#666',
+    color: '#8D7EFB',
   },
 });

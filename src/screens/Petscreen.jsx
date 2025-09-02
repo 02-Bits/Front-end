@@ -1,124 +1,157 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import TabBar from '../components/TabBar';
+ 
+const PetScreen = ({ route }) => {
+  const { petData } = route.params;
 
-const PetScreen = () => {
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        {/* Pet Photo */}
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.imageContainer}>
           <Image
-            source={require('../assets/pet.png')} // Replace with actual pet image source
-            style={styles.petImage}
-          />
+              style={styles.petImage}
+              source={petData.image}
+            />
         </View>
-
-        {/* Input Fields */}
-        <Text style={styles.label}>Nome</Text>
-        <TextInput style={styles.inputField} placeholder="Nome do Pet" />
-
-        <Text style={styles.label}>Idade</Text>
-        <TextInput style={styles.inputField} placeholder="Idade do Pet" keyboardType="numeric" />
-
-        <Text style={styles.label}>Porte</Text>
-        <TextInput style={styles.inputField} placeholder="Porte do Pet" />
-
-        <Text style={styles.label}>Raça</Text>
-        <TextInput style={styles.inputField} placeholder="Raça do Pet" />
-
-        <Text style={styles.label}>Detalhes</Text>
-        <TextInput
-          style={[styles.inputField, styles.multilineInput]}
-          placeholder="Detalhes adicionais"
-          multiline
-          numberOfLines={4}
-        />
-
-        {/* Action Buttons */}
+        <View style={styles.formContainer}>
+          <View style={styles.row}>
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>Nome</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Nome"
+                value={petData.name}
+              />
+            </View>
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>Idade</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Idade"
+                value={petData.age}
+              />
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>Porte</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Porte"
+                value={petData.size}
+              />
+            </View>
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>Raça</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Raça"
+                value={petData.breed}
+              />
+            </View>
+          </View>
+          <View style={styles.fullWidthInputGroup}>
+            <Text style={styles.label}>Detalhes</Text>
+            <TextInput
+              style={[styles.input, styles.detailsInput]}
+              placeholder="Detalhes"
+              multiline
+              value={petData.details}
+            />
+          </View>
+        </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.saveButton}>
+          <TouchableOpacity style={[styles.button, styles.saveButton]}>
             <Text style={styles.buttonText}>Salvar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.cancelButton}>
+          <TouchableOpacity style={[styles.button, styles.cancelButton]}>
             <Text style={styles.buttonText}>Cancelar</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
 
-      {/* Bottom Navigation Bar */}
-      
     </View>
   );
 };
-
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF6D5',
+    backgroundColor: '#FFFFFF', // Updated to user requested background color
   },
-  scrollContent: {
-    padding: 20,
-    paddingBottom: 100, // Ensure content is not hidden by bottom navigation
+  scrollContainer: {
+    paddingBottom: 80, // Add padding to the bottom to avoid overlap with the TabBar
   },
   imageContainer: {
     alignItems: 'center',
     marginVertical: 20,
   },
   petImage: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    borderWidth: 4,
-    borderColor: 'white',
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    backgroundColor: '#FFFFFF', // White background for image placeholder
+    borderWidth: 2,
+    borderColor: '#A367F0', // Border color matching primary purple
+  },
+  formContainer: {
+    paddingHorizontal: 20,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 15,
+  },
+  inputGroup: {
+    width: '48%',
+  },
+  fullWidthInputGroup: {
+    width: '100%',
+    marginBottom: 15,
   },
   label: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 10,
     marginBottom: 5,
-    color: '#333',
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#FFFFFF', // Updated to user requested text color
   },
-  inputField: {
-    backgroundColor: 'white',
-    borderRadius: 8,
-    padding: 12,
-    marginBottom: 10,
-    fontSize: 16,
+  input: {
+    backgroundColor: '#FFFFFF', // White background for input fields
+    borderRadius: 10,
+    padding: 10,
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: '#D0D0D0', // Lighter border for inputs
   },
-  multilineInput: {
+  detailsInput: {
     height: 100,
     textAlignVertical: 'top',
+    fontSize: 14,
   },
-  buttonContainer: {
+    buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     marginTop: 20,
-    marginBottom: 20,
+    paddingHorizontal: 20,
+  },
+  button: {
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    width: '48%',
   },
   saveButton: {
-    backgroundColor: '#4CAF50',
-    padding: 15,
-    borderRadius: 10,
-    flex: 1,
-    marginRight: 10,
-    alignItems: 'center',
+    backgroundColor: '#6A0DAD', // Darker purple for save button
   },
+ 
   cancelButton: {
-    backgroundColor: '#F44336',
-    padding: 15,
-    borderRadius: 10,
-    flex: 1,
-    marginLeft: 10,
-    alignItems: 'center',
+    backgroundColor: '#8A2BE2', // Medium purple for cancel button
   },
   buttonText: {
-    color: 'white',
-    fontSize: 18,
+    color: '#FFFFFF',
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
-
+ 
 export default PetScreen;

@@ -54,19 +54,12 @@ const ConsultasScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerTitle}>Consultas</Text>
-      </View>
-
       <View style={styles.tabContainer}>
         <TouchableOpacity
           style={[styles.tab, activeTab === 'Agendada' && styles.activeTab]}
           onPress={() => setActiveTab('Agendada')}
         >
           <Text style={[styles.tabText, activeTab === 'Agendada' && styles.activeTabText]}>Agendada</Text>
-          <View style={styles.badge}>
-            <Text style={styles.badgeText}>1</Text>
-          </View>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.tab, activeTab === 'Andamento' && styles.activeTab]}
@@ -94,24 +87,14 @@ const ConsultasScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFBEA',
+    backgroundColor: '#EBE4F4',
     paddingHorizontal: 16,
-  },
-  headerContainer: {
-    width: '100%',
-    paddingTop: 16,
-    paddingBottom: 12,
-    alignItems: 'center',
-  },
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#000000',
   },
   tabContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginBottom: 16,
+    backgroundColor: '#EBE4F4',
   },
   tab: {
     flex: 1,
@@ -120,34 +103,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
     marginHorizontal: 4,
-    position: 'relative',
   },
   activeTab: {
-    backgroundColor: '#A259FF',
+    backgroundColor: '#A367F0',
   },
   tabText: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#8D7EFB',
   },
   activeTabText: {
     color: '#FFFFFF',
-  },
-  badge: {
-    position: 'absolute',
-    top: -5,
-    right: -5,
-    backgroundColor: '#FF0000',
-    borderRadius: 9,
-    width: 18,
-    height: 18,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  badgeText: {
-    color: '#FFFFFF',
-    fontSize: 10,
-    fontWeight: 'bold',
   },
   contentContainer: {
     flex: 1,
@@ -160,14 +126,8 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 12,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#C79DFD',
   },
   petImage: {
     width: 48,
@@ -181,15 +141,15 @@ const styles = StyleSheet.create({
   },
   petName: {
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#A367F0',
   },
   service: {
     fontSize: 12,
-    color: '#7A7A7A',
+    color: '#8D7EFB',
   },
   time: {
     fontSize: 12,
-    color: '#7A7A7A',
+    color: '#C49DF6',
   },
   statusBadgeCard: {
     borderRadius: 12,
@@ -202,16 +162,16 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   statusAgendada: {
-    backgroundColor: '#A259FF',
+    backgroundColor: 'rgba(141, 126, 251, 0.8)' // #8D7EFB with opacity
   },
   statusAndamento: {
-    backgroundColor: '#FFC107', // Example color for In Progress
+    backgroundColor: 'rgba(196, 157, 246, 0.8)', // #C49DF6 with opacity
   },
   statusConcluída: {
-    backgroundColor: '#4CAF50', // Example color for Completed
+    backgroundColor: 'rgba(163, 103, 240, 0.8)' // #A367F0 with opacity
   },
   scheduleButton: {
-    backgroundColor: '#A259FF',
+    backgroundColor: '#A367F0', // Gradient would be 'linear-gradient(to right, #A367F0, #8D7EFB)'
     height: 44,
     width: '80%',
     borderRadius: 8,
