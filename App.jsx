@@ -5,11 +5,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Image } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 // Suas telas originais
 import HomeScreen from './src/screens/HomeScreen';
 import PetList from './src/screens/PetList';
-import AddPetScreen from './src/screens/AddPetScreen';
+import AddPetScreen from './src/screens/AgendamentoScreen.jsx';
 import PetsScreen from './src/screens/Petscreen';  // Tela de detalhes do pet
 import FavoritesScreen from './src/screens/FavoritesScreen';
 import ConsultasScreen from './src/screens/VeterinarioScreen';
@@ -25,16 +26,27 @@ import iconeVeterinario from './src/assets/veterinario.png';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
+const newHeaderOptions = {
+  headerBackground: () => (
+    <LinearGradient
+      colors={['rgb(163, 103, 240)', 'rgb(141, 126, 251)']}
+      style={{ flex: 1 }}
+    />
+  ),
+  headerTitleStyle: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  headerTintColor: 'white',
+  headerTitleAlign: 'center',
+};
+
 // Stack interno para a aba Pets (lista, adicionar, detalhes)
 function PetsStack() {
   return (
     <Stack.Navigator
-      screenOptions={{
-        headerStyle: { backgroundColor: '#FFF3B0' },
-        headerTintColor: '#5B51EF',
-        headerTitleAlign: 'center',
-        headerTitleStyle: { fontWeight: 'bold' },
-      }}
+      screenOptions={newHeaderOptions}
     >
       <Stack.Screen
         name="PetList"
@@ -44,13 +56,37 @@ function PetsStack() {
       <Stack.Screen
         name="AddPet"
         component={AddPetScreen}
-        options={{ title: 'Adicionar Pet' }}
+        options={{ title: 'Agendar Consulta' }}
       />
       <Stack.Screen
         name="PetDetails"
         component={PetsScreen}
-        options={{ title: 'Detalhes do Pet', headerShown: false }}
+        options={{ title: 'Detalhes do Pet' }}
       />
+    </Stack.Navigator>
+  );
+}
+
+function HomeTabStack() {
+  return (
+    <Stack.Navigator screenOptions={newHeaderOptions}>
+      <Stack.Screen name="HomeTab" component={HomeScreen} options={{ title: 'Home' }} />
+    </Stack.Navigator>
+  );
+}
+
+function AddPetTabStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="AddPetTab" component={AddPetScreen} options={{ title: 'Agendar Consulta' }} />
+    </Stack.Navigator>
+  );
+}
+
+function FavoritesTabStack() {
+  return (
+    <Stack.Navigator screenOptions={newHeaderOptions}>
+      <Stack.Screen name="FavoritesTab" component={FavoritesScreen} options={{ title: 'Favoritos' }} />
     </Stack.Navigator>
   );
 }
@@ -60,13 +96,19 @@ function MainTabs() {
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
-          backgroundColor: '#FFF3B0',
           height: 60,
           paddingBottom: 5,
           paddingTop: 5,
+          borderTopWidth: 0,
         },
-        tabBarActiveTintColor: '#5B51EF',
-        tabBarInactiveTintColor: '#333',
+        tabBarBackground: () => (
+          <LinearGradient
+            colors={['rgb(163, 103, 240)', 'rgb(141, 126, 251)']}
+            style={{ flex: 1 }}
+          />
+        ),
+        tabBarActiveTintColor: 'white',
+        tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.7)',
         headerShown: false, // Cabeçalho está dentro das stacks quando necessário
         tabBarShowLabel: false, // Somente ícones
       }}
@@ -75,13 +117,13 @@ function MainTabs() {
         name="Home"
         component={PetsStack} // Stack com várias telas dentro da aba Pets
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({ color, size }) => (
             <Image
               source={iconeHome}
               style={{
-                width: 24,
-                height: 24,
-                tintColor: focused ? '#5B51EF' : '#333',
+                width: size,
+                height: size,
+                tintColor: color,
               }}
               resizeMode="contain"
             />
@@ -91,15 +133,15 @@ function MainTabs() {
 
       <Tab.Screen
         name="Pets"
-        component={HomeScreen}
+        component={HomeTabStack}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({ color, size }) => (
             <Image
               source={iconePet}
               style={{
-                width: 24,
-                height: 24,
-                tintColor: focused ? '#5B51EF' : '#333',
+                width: size,
+                height: size,
+                tintColor: color,
               }}
               resizeMode="contain"
             />
@@ -111,15 +153,15 @@ function MainTabs() {
 
       <Tab.Screen
         name="AddPet"
-        component={AddPetScreen}
+        component={AddPetTabStack}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({ color, size }) => (
             <Image
               source={iconeMao}
               style={{
-                width: 24,
-                height: 24,
-                tintColor: focused ? '#5B51EF' : '#333',
+                width: size,
+                height: size,
+                tintColor: color,
               }}
               resizeMode="contain"
             />
@@ -129,15 +171,15 @@ function MainTabs() {
 
       <Tab.Screen
         name="Favorites"
-        component={FavoritesScreen}
+        component={FavoritesTabStack}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({ color, size }) => (
             <Image
               source={iconePessoa}
               style={{
-                width: 24,
-                height: 24,
-                tintColor: focused ? '#5B51EF' : '#333',
+                width: size,
+                height: size,
+                tintColor: color,
               }}
               resizeMode="contain"
             />
@@ -148,13 +190,13 @@ function MainTabs() {
       <Tab.Screen
         name="Veterinario"
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({ color, size }) => (
             <Image
               source={iconeVeterinario}
               style={{
-                width: 24,
-                height: 24,
-                tintColor: focused ? '#5B51EF' : '#333',
+                width: size,
+                height: size,
+                tintColor: color,
               }}
               resizeMode="contain"
             />
@@ -163,12 +205,7 @@ function MainTabs() {
       >
         {() => (
           <Stack.Navigator
-            screenOptions={{
-              headerStyle: { backgroundColor: '#FFF3B0' },
-              headerTintColor: '#5B51EF',
-              headerTitleAlign: 'center',
-              headerTitleStyle: { fontWeight: 'bold' },
-            }}
+            screenOptions={newHeaderOptions}
           >
             <Stack.Screen
               name="Consultas"
