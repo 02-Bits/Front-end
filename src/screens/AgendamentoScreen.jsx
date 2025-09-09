@@ -29,15 +29,6 @@ export default function AgendamentoScreen() {
 
   return (
     <View style={styles.container}>
-      <LinearGradient
-        colors={['#A367F0', '#8D7EFB']}
-        style={styles.header}
-      >
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Icon name="arrow-back" size={24} color="#FFFFFF" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Agendar Consulta</Text>
-      </LinearGradient>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Text style={styles.sectionTitle}>Seleção de Pet</Text>
         <View style={styles.petSelectionContainer}>
@@ -182,31 +173,11 @@ export default function AgendamentoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EBE4F4',
-  },
-  header: {
-    paddingTop: 50,
-    paddingBottom: 20,
-    paddingHorizontal: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  backButton: {
-    position: 'absolute',
-    left: 20,
-    top: 52,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderRadius: 20,
-    padding: 5,
-  },
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
+    backgroundColor: '#FFFFFF',
   },
   scrollContainer: {
     padding: 20,
+    paddingTop: 50,
   },
   sectionTitle: {
     fontSize: 18,
@@ -304,7 +275,7 @@ const styles = StyleSheet.create({
     borderColor: '#A367F0',
   },
   timeButtonOccupied: {
-    backgroundColor: '#EBE4F4',
+    backgroundColor: '#FFFFFF',
     borderColor: '#EBE4F4',
   },
   timeButtonText: {

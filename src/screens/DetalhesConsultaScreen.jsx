@@ -84,6 +84,15 @@ const DetalhesConsultaScreen = () => {
               <Image source={require('../assets/google_maps.png')} style={styles.mapIcon} />
             </View>
           </View>
+          {/* Botões de ação */}
+          <View style={styles.actionButtonsContainer}>
+            <TouchableOpacity style={styles.reportButton} onPress={() => {}}>
+              <Text style={styles.reportButtonText}>Gerar Relatório</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.cancelButton} onPress={() => {}}>
+              <Text style={styles.cancelButtonText}>Cancelar</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -138,10 +147,12 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   petImage: {
-    width: 96,
-    height: 96,
-    borderRadius: 48,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     marginBottom: 8,
+    alignSelf: 'center',
+    resizeMode: 'contain',
   },
   petName: {
     fontSize: 20,
@@ -195,6 +206,34 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginBottom: 8,
   },
+  actionButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  reportButton: {
+    backgroundColor: '#A367F0',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  reportButtonText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  cancelButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+  },
+  cancelButtonText: {
+    color: '#A367F0',
+    fontWeight: 'bold',
+    fontSize: 16,
+    textDecorationLine: 'underline',
+  },
   tagGreen: {
     backgroundColor: '#F0ECFF',
   },
@@ -236,10 +275,12 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 12,
-    backgroundColor: '#EBE4F4',
+    backgroundColor: '#FFFFFF',
     marginLeft: 12,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
+    resizeMode: 'contain',
   },
   iconImage: {
     width: 24,

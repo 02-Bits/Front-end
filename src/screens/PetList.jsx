@@ -62,7 +62,7 @@ export default function PetList() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: '#EBE4F4' },
+  container: { flex: 1, padding: 20, backgroundColor: '#FFFFFF' },
   header: {
     backgroundColor: '#FFFFFF',
     padding: 15,

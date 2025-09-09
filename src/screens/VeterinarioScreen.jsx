@@ -87,14 +87,14 @@ const ConsultasScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EBE4F4',
+    backgroundColor: '#FFFFFF',
     paddingHorizontal: 16,
   },
   tabContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginBottom: 16,
-    backgroundColor: '#EBE4F4',
+    backgroundColor: '#FFFFFF',
   },
   tab: {
     flex: 1,

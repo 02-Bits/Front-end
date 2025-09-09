@@ -198,7 +198,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#C79DFD',
+    backgroundColor: '#FFFFFF',
   },
   header: {
     backgroundColor: '#C49DF6',
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
   },
   petCard: {
     flexDirection: 'row',
-    backgroundColor: '#C79DFD',
+    backgroundColor: '#FFFFFF',
     borderRadius: 15, // Increased border radius for a softer look
     padding: 20, // Increased padding for better spacing
     marginHorizontal: 20,
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   input: {
-    backgroundColor: '#C79DFD',
+    backgroundColor: '#FFFFFF',
     borderRadius: 5,
     padding: 10,
     marginBottom: 15,
