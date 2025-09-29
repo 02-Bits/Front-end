@@ -1,0 +1,46 @@
+{
+  "name": "petmobile",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@expo-google-fonts/geologica": "^0.4.1",
+    "@expo-google-fonts/poppins": "^0.4.0",
+    "@expo/metro-runtime": "~5.0.4",
+    "@react-native-community/cli": "^19.1.1",
+    "@react-native-community/datetimepicker": "^8.4.1",
+    "@react-native-picker/picker": "^2.11.2",
+    "@react-navigation/bottom-tabs": "^7.4.4",
+    "@react-navigation/native": "^7.1.16",
+    "@react-navigation/native-stack": "^7.3.23",
+    "@react-navigation/stack": "^7.4.4",
+    "expo": "~53.0.20",
+    "expo-font": "^13.3.2",
+    "expo-linear-gradient": "~14.1.5",
+    "expo-status-bar": "~2.2.3",
+    "install": "^0.13.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "0.79.5",
+    "react-native-calendars": "^1.1313.0",
+    "react-native-gesture-handler": "~2.24.0",
+    "react-native-haptic-feedback": "^2.3.3",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "^5.4.0",
+    "react-native-screens": "~4.11.1",
+    "react-native-vector-icons": "^10.3.0",
+    "react-native-web": "^0.20.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@types/react": "~19.0.10",
+    "@types/react-native": "^0.72.8",
+    "typescript": "~5.8.3"
+  },
+  "private": true
+}
