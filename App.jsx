@@ -6,16 +6,20 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import LoginScreen from './src/screens/LoginScreen';
+import CadastroScreen from './src/screens/CadastroScreen';
 
 // Suas telas originais
 import HomeScreen from './src/screens/HomeScreen';
+import InicialScreen from './src/screens/InicialScreen';
 import PetList from './src/screens/PetList';
 import AgendamentoScreen from './src/screens/AgendamentoScreen.jsx';
 import PetsScreen from './src/screens/Petscreen';  // Tela de detalhes do pet
-import FavoritesScreen from './src/screens/FavoritesScreen';
+import ConfigurationScreen from './src/screens/ConfigurationScreen';
 import ConsultasScreen from './src/screens/VeterinarioScreen';
 import DetalhesConsultaScreen from './src/screens/DetalhesConsultaScreen';
 import AdicionarPetScreen from './src/screens/AdicionarPetScreen'; // Nova tela de adicionar pet
+import PrincipalScreen from './src/screens/PrincipalScreen'; // Importando PrincipalScreen
 
 // Novas telas do fluxo de agendamento
 import ScheduleFormScreen from './src/screens/ScheduleFormScreen';
@@ -32,6 +36,7 @@ import iconeVeterinario from './src/assets/veterinario.png';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+const RootStack = createNativeStackNavigator();
 
 const newHeaderOptions = {
   headerBackground: () => (
@@ -78,7 +83,7 @@ function PetsStack() {
 function HomeTabStack() {
   return (
     <Stack.Navigator screenOptions={newHeaderOptions}>
-      <Stack.Screen name="HomeTab" component={HomeScreen} options={{ title: 'Home' }} />
+      <Stack.Screen name="HomeTab" component={PrincipalScreen} options={{ title: 'Home' }} />
     </Stack.Navigator>
   );
 }
@@ -91,10 +96,10 @@ function AddPetTabStack() {
   );
 }
 
-function FavoritesTabStack() {
+function ConfigurationTabStack() {
   return (
     <Stack.Navigator screenOptions={newHeaderOptions}>
-      <Stack.Screen name="FavoritesTab" component={FavoritesScreen} options={{ title: 'Favoritos' }} />
+      <Stack.Screen name="ConfigurationTab" component={ConfigurationScreen} options={{ title: 'Configurações' }} />
     </Stack.Navigator>
   );
 }
@@ -123,7 +128,7 @@ function MainTabs() {
     >
       <Tab.Screen
         name="Home"
-        component={PetsStack} // Stack com várias telas dentro da aba Pets
+        component={HomeTabStack} // Corrigido para usar HomeTabStack
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image
@@ -159,7 +164,7 @@ function MainTabs() {
 
       <Tab.Screen
         name="Pets"
-        component={HomeTabStack}
+        component={PetsStack} // Corrigido para usar PetsStack
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image
@@ -236,8 +241,8 @@ function MainTabs() {
       </Tab.Screen>
 
       <Tab.Screen
-        name="Favorites"
-        component={FavoritesTabStack}
+        name="Configurações"
+        component={ConfigurationTabStack}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image
@@ -259,8 +264,14 @@ function MainTabs() {
 export default function App() {
   return (
     <NavigationContainer>
-      {/* Principal é só a Tab Navigator com a stack interna para Pets */}
-      <MainTabs />
+      {/* Root stack para exibir a tela Inicial primeiro e depois as tabs */}
+      <RootStack.Navigator initialRouteName="Inicial" screenOptions={{ headerShown: false }}>
+        <RootStack.Screen name="Inicial" component={InicialScreen} />
+        <RootStack.Screen name="LoginScreen" component={LoginScreen} />
+        <RootStack.Screen name="CadastroScreen" component={CadastroScreen} />
+        {/* <RootStack.Screen name="Principal" component={PrincipalScreen} /> */}
+        <RootStack.Screen name="Main" component={MainTabs} />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 }

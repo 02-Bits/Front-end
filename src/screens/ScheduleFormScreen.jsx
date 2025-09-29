@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
   dateTimeButton: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, padding: 15, backgroundColor: '#FFFFFF' },
   dateTimeText: { fontSize: 16, color: '#4B5563' },
   textInput: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, padding: 15, backgroundColor: '#FFFFFF', minHeight: 100, textAlignVertical: 'top' },
-  webPicker: { width: '100%', height: 50, border: '1px solid #D1D5DB', borderRadius: 8, padding: '0 15px', backgroundColor: '#FFFFFF', fontSize: 16, color: '#4B5563' },
+  webPicker: { width: '100%', height: 50, border: '1px solid #D1D5DB', borderRadius: 8, paddingVertical: 0, paddingHorizontal: 15, backgroundColor: '#FFFFFF', fontSize: 16, color: '#4B5563' },
   nextButton: { backgroundColor: '#A367F0', padding: 16, borderRadius: 8, alignItems: 'center', marginTop: 20 },
   nextButtonText: { color: '#FFFFFF', fontSize: 16, fontWeight: 'bold' },
 });
