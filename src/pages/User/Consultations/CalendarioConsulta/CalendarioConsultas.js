@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../../components/Header_com_cadastro';
-import Footer from '../../../components/Footer';
+import Header from '../../../../components/HeaderComCadastro';
+import Footer from '../../../../components/Footer';
 import '../css/styles.css'; // Caminho de CSS unificado e corrigido
 
 // --- DADOS MOCKADOS ATUALIZADOS ---

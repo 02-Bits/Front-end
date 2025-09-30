@@ -5,7 +5,7 @@ import logo from '../../assets/images/Header/LogoPet_vita(Atualizado).png';
 import ModalManager from '../../components/ModalManager';
 import './css/styles.css';
 
-const Header_sem_cadastro = () => {
+const HeaderSemCadastro = () => {
   const [activeModal, setActiveModal] = useState(null);
   const location = useLocation(); // Hook para pegar a rota atual
 
@@ -63,4 +63,4 @@ const Header_sem_cadastro = () => {
   );
 };
 
-export default Header_sem_cadastro;
+export default HeaderSemCadastro;

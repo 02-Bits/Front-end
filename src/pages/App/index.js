@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../components/Header_sem_cadastro';
+import Header from '../../components/HeaderSemCadastro';
 import Footer from '../../components/Footer';
 import IphoneApp1 from '../../assets/images/App/Iphone_app_1.png';
 import IphoneApp2 from '../../assets/images/App/Iphone_app_2.png';

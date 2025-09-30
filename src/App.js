@@ -6,8 +6,8 @@ import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
 
 // Importa TODOS os headers aqui
-import HeaderSemCadastro from './components/Header_sem_cadastro/index.js';
-import HeaderComCadastro from './components/Header_com_cadastro/index.js';
+import HeaderSemCadastro from './components/HeaderSemCadastro/index.js';
+import HeaderComCadastro from './components/HeaderComCadastro/index.js';
 import HeaderVet from './components/HeaderVet/HeaderVet.js';
 import HeaderAdmin from './components/HeaderAdmin/HeaderAdmin.js';
 

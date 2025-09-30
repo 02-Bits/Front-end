@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../../context/AuthContext';
 import api from '../../../../services/api';
-import HeaderComCadastro from '../../../../components/Header_com_cadastro';
+import HeaderComCadastro from '../../../../components/HeaderComCadastro';
 import Footer from '../../../../components/Footer';
 import './css/styles.css';
 

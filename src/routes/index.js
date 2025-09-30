@@ -18,7 +18,7 @@ import ModalRegisterVet from "../components/ModalRegisterVet";
 import AbaoutUs from "../pages/AboutUs";
 import App from "../pages/App";
 import Chat from "../pages/User/Chat/Chat";
-import Calendario from "../pages/User/Consultations/Calendario/Calendario"; 
+import Calendario from "../pages/User/Consultations/CalendarioConsulta/CalendarioConsultas"; 
 
 // Imports do Vet
 import VetDashboard from '../pages/Vet/Dashboard/Dashboard';

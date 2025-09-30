@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../components/Header_sem_cadastro'
+import Header from '../../components/HeaderSemCadastro'
 import Footer from '../../components/Footer';
 import LogoEquipe from '../../assets/images/AboutUs/Logo_equipe.png';
 import PerfilIcon from '../../assets/images/Header/perfilIcon.png';

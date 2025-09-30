@@ -3,8 +3,8 @@ import { useAuth } from '../../../context/AuthContext';
 import api from '../../../services/api';
 
 // ===== IMPORT FALTANDO ADICIONADO AQUI =====
-import HeaderSemCadastro from '../../../components/Header_sem_cadastro';
-import HeaderComCadastro from '../../../components/Header_com_cadastro';
+import HeaderSemCadastro from '../../../components/HeaderSemCadastro';
+import HeaderComCadastro from '../../../components/HeaderComCadastro';
 import Footer from '../../../components/Footer';
 
 // Imagens

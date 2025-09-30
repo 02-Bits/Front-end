@@ -9,8 +9,8 @@ import pontos from '../../assets/images/Home/Pontos.png';
 import Footer from '../../components/Footer';
 import './css/styles.css';
 
-import HeaderSemCadastro from '../../components/Header_sem_cadastro';
-import HeaderComCadastro from '../../components/Header_com_cadastro'; 
+import HeaderSemCadastro from '../../components/HeaderSemCadastro';
+import HeaderComCadastro from '../../components/HeaderComCadastro'; 
 
 
 const Home = () => {

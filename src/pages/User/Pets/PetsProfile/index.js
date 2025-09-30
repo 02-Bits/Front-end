@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // ===== CORREÇÕES NOS IMPORTS ABAIXO =====
 import { Link } from 'react-router-dom'; // Corrigido: Importando o 'Link' que é usado no código
-import HeaderComCadastro from '../../../../components/Header_com_cadastro'; // Corrigido: Importando com o nome correto
+import HeaderComCadastro from '../../../../components/HeaderComCadastro'; // Corrigido: Importando com o nome correto
 // ======================================
 import Footer from '../../../../components/Footer';
 import { useAuth } from '../../../../context/AuthContext';

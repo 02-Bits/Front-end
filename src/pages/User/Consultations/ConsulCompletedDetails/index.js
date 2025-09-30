@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import HeaderComCadastro from '../../../../components/Header_com_cadastro'; // <-- LINHA QUE ESTAVA FALTANDO
+import HeaderComCadastro from '../../../../components/HeaderComCadastro'; // <-- LINHA QUE ESTAVA FALTANDO
 import Footer from '../../../../components/Footer';
 import api from '../../../../services/api';
 import { useAuth } from '../../../../context/AuthContext';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import perfil_pet from '../../../../assets/images/Pets/Perfil_pet.png';
-import Header from '../../../../components/Header_com_cadastro';
+import Header from '../../../../components/HeaderComCadastro';
 import Footer from '../../../../components/Footer';
 import './css/styles.css';
 

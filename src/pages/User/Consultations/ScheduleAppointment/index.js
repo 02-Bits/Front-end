@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import HeaderComCadastro from '../../../../components/Header_com_cadastro';
+import HeaderComCadastro from '../../../../components/HeaderComCadastro';
 import Footer from '../../../../components/Footer';
 import { useAuth } from '../../../../context/AuthContext';
 import api from '../../../../services/api';
