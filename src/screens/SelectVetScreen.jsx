@@ -72,6 +72,7 @@ const SelectVetScreen = ({ navigation, route }) => {
     const formData = route?.params?.appointmentData || {};
     const selectedVet = veterinarians.find(v => v.id === selectedVetId);
     console.log('Veterinário selecionado:', selectedVetId);
+    console.log('Dados para ReviewScreen:', { ...formData, vet: selectedVet });
     navigation.navigate('ReviewScreen', { ...formData, vet: selectedVet });
   };
 

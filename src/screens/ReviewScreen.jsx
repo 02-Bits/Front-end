@@ -6,10 +6,11 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
-  Alert
+  Modal
 } from 'react-native';
 
 const ReviewScreen = ({ navigation, route }) => {
+  const [isModalVisible, setIsModalVisible] = React.useState(false);
   // Recebe dados via navegação
   const {
     pet = { name: 'Luna', image: 'https://images.unsplash.com/photo-1560809453-57b495cce980?w=100&h=100&fit=crop&crop=face' },
@@ -39,16 +40,11 @@ const ReviewScreen = ({ navigation, route }) => {
       reason
     });
 
-    Alert.alert(
-      'Sucesso',
-      'Consulta agendada com sucesso!',
-      [
-        {
-          text: 'OK',
-          onPress: () => navigation.navigate('SuccessScreen')
-        }
-      ]
-    );
+    setIsModalVisible(true);
+    setTimeout(() => {
+      setIsModalVisible(false);
+      navigation.navigate('SuccessScreen');
+    }, 2000); // Mostra o modal por 2 segundos antes de navegar
   };
 
   return (
@@ -130,6 +126,19 @@ const ReviewScreen = ({ navigation, route }) => {
           <Text style={styles.confirmButtonText}>Concluído</Text>
         </TouchableOpacity>
       </ScrollView>
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={() => setIsModalVisible(false)}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Consulta agendada</Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -274,6 +283,33 @@ const styles = StyleSheet.create({
   confirmButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)', // Fundo embaçado
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });

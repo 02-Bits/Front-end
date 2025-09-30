@@ -19,7 +19,7 @@ const ScheduleFormScreen = ({ navigation, route }) => {
   const [formData, setFormData] = useState({
     pet: petId || '',
     specialty: serviceId || '',
-    date: paramDate ? new Date(paramDate) : new Date(),
+    date: paramDate ? new Date(paramDate + 'T12:00:00') : new Date(),
     time: paramTime && paramDate ? new Date(`${paramDate}T${paramTime}`) : new Date(),
     reason: ''
   });
@@ -114,6 +114,7 @@ const ScheduleFormScreen = ({ navigation, route }) => {
       };
       const appointmentData = {
         ...formData,
+        date: formData.date.toISOString().split('T')[0], // Garante que a data seja passada como YYYY-MM-DD
         pet: petMap[formData.pet] || { id: 'unknown', name: formData.pet, image: 'https://via.placeholder.com/100' }
       };
       navigation.navigate('SelectVetScreen', { appointmentData });

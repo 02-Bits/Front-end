@@ -23,6 +23,12 @@ const DetalhesConsultaScreen = ({ navigation, route }) => {
     implementos: [],
     imageSource: require('../assets/cat1.png')
   };
+  const formatDisplayDate = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString + 'T12:00:00'); // Adiciona T12:00:00 para evitar problemas de fuso horário
+    return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -50,7 +56,7 @@ const DetalhesConsultaScreen = ({ navigation, route }) => {
           {/* Consultation Details */}
           <View style={styles.section}>
             <View style={styles.detailRow}>
-              <Text style={styles.detailText}>{consultaData.time} | {consultaData.data}</Text>
+              <Text style={styles.detailText}>{consultaData.time} | {formatDisplayDate(consultaData.data)}</Text>
             </View>
             <View style={styles.detailRow}>
               <Text style={styles.detailText}>{consultaData.service}</Text>
@@ -92,11 +98,6 @@ const DetalhesConsultaScreen = ({ navigation, route }) => {
             <Text style={styles.locationText}>
               {consultaData.localizacao}
             </Text>
-            <View style={styles.mapIconsContainer}>
-              {/* Placeholder for map icons */}
-              <Image source={require('../assets/carrinho.png')} style={styles.mapIcon} />
-              <Image source={require('../assets/google_maps.png')} style={styles.mapIcon} />
-            </View>
           </View>
           {/* Botões de ação - diferentes por status */}
           <View style={styles.actionButtonsContainer}>
@@ -176,9 +177,9 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   petImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 100,
+    height: 100,
+    borderRadius: 70,
     marginBottom: 8,
     alignSelf: 'center',
     resizeMode: 'contain',
@@ -304,30 +305,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#4B5563',
     lineHeight: 24,
-    width: '70%',
-    marginRight: 24,
-  },
-  mapIconsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
     width: '100%',
+    marginRight: 0,
   },
-  mapIcon: {
-    width: 60,
-    height: 60,
-    borderRadius: 12,
-    backgroundColor: '#FFFFFF',
-    marginLeft: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    resizeMode: 'contain',
-  },
-  iconImage: {
-    width: 24,
-    height: 24,
-  }
 });
  
 export default DetalhesConsultaScreen;

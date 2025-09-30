@@ -85,7 +85,13 @@ const ConsultasScreen = ({ navigation }) => {
     const Card = ({ consulta }) => (
       <TouchableOpacity 
         style={styles.card} 
-        onPress={() => navigation.navigate('DetalhesConsulta', { consulta })}
+        onPress={() => {
+          const parts = consulta.data.split(' | ');
+          const datePart = parts[1]; // "DD/MM/YYYY"
+          const [day, month, year] = datePart.split('/');
+          const formattedDateForDetails = `${year}-${month}-${day}`;
+          navigation.navigate('DetalhesConsulta', { consulta: { ...consulta, data: formattedDateForDetails } });
+        }}
       >
         <Image source={consulta.imageSource} style={styles.petImage} />
         <View style={styles.cardInfo}>
@@ -160,17 +166,17 @@ const styles = StyleSheet.create({
   },
   tab: {
     flex: 1,
-    paddingVertical: 10,
+    paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    marginHorizontal: 4,
+    marginHorizontal: 16,
   },
   activeTab: {
     backgroundColor: '#A367F0',
   },
   tabText: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#8D7EFB',
   },

@@ -1,35 +1,91 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import TabBar from '../components/TabBar';
  
+
 const PetScreen = ({ route }) => {
   const { petData } = route.params;
+
+const PetScreen = ({ route, navigation }) => {
+  const { petData, onGoBack } = route.params;
+
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [size, setSize] = useState('');
+  const [breed, setBreed] = useState('');
+  const [species, setSpecies] = useState('');
+  const [details, setDetails] = useState('');
+
+  useEffect(() => {
+    if (petData) {
+      console.log('petData.nome:', petData.nome);
+      // Removemos a inicialização dos estados aqui para que os campos comecem vazios
+      // e o placeholder exiba os dados do pet.
+    }
+  }, [petData]);
+
+  const handleSave = () => {
+    const updatedPet = {
+      id: petData.id,
+      nome: name || petData.nome,
+      idade: age || petData.idade,
+      especie: species || petData.especie,
+      porte: size || petData.porte,
+      raca: breed || petData.raca,
+      detalhes: details || petData.detalhes,
+      image: petData.image,
+      servico: petData.servico,
+      horario: petData.horario,
+    };
+    onGoBack(updatedPet);
+    navigation.goBack();
+  };
+
+  const handleCancel = () => {
+    navigation.goBack();
+  };
+
 
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.nameInputContainer}>
+          <TextInput
+            style={styles.nameInput}
+            onChangeText={setName}
+            value={name}
+            placeholder={petData?.nome || 'Nome do Pet'}
+            placeholderTextColor="#888"
+          />
+        </View>
+
         <View style={styles.imageContainer}>
           <Image
-              style={styles.petImage}
-              source={petData.image}
-            />
+            style={styles.petImage}
+            source={petData.image}
+          />
         </View>
         <View style={styles.formContainer}>
           <View style={styles.row}>
             <View style={styles.inputGroup}>
-              <Text style={styles.label}>Nome</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Nome"
-                value={petData.name}
-              />
-            </View>
-            <View style={styles.inputGroup}>
               <Text style={styles.label}>Idade</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Idade"
-                value={petData.age}
+                onChangeText={setAge}
+                value={age}
+                placeholder={petData?.idade || 'Idade do Pet'}
+                placeholderTextColor="#888"
+                keyboardType="numeric"
+              />
+            </View>
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>Espécie</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={setSpecies}
+                value={species}
+                placeholder={petData?.especie || 'Espécie do Pet'}
+                placeholderTextColor="#888"
               />
             </View>
           </View>
@@ -38,16 +94,20 @@ const PetScreen = ({ route }) => {
               <Text style={styles.label}>Porte</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Porte"
-                value={petData.size}
+                onChangeText={setSize}
+                value={size}
+                placeholder={petData?.porte || 'Porte do Pet'}
+                placeholderTextColor="#888"
               />
             </View>
             <View style={styles.inputGroup}>
               <Text style={styles.label}>Raça</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Raça"
-                value={petData.breed}
+                onChangeText={setBreed}
+                value={breed}
+                placeholder={petData?.raca || 'Raça do Pet'}
+                placeholderTextColor="#888"
               />
             </View>
           </View>
@@ -55,9 +115,11 @@ const PetScreen = ({ route }) => {
             <Text style={styles.label}>Detalhes</Text>
             <TextInput
               style={[styles.input, styles.detailsInput]}
-              placeholder="Detalhes"
+              onChangeText={setDetails}
+              value={details}
+              placeholder={petData?.detalhes || 'Detalhes do Pet'}
+              placeholderTextColor="#888"
               multiline
-              value={petData.details}
             />
           </View>
         </View>
@@ -70,7 +132,6 @@ const PetScreen = ({ route }) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-
     </View>
   );
 };
@@ -98,6 +159,24 @@ const styles = StyleSheet.create({
   formContainer: {
     paddingHorizontal: 20,
   },
+  nameInputContainer: {
+    alignItems: 'center',
+    marginBottom: 15,
+    marginTop: 20,
+  },
+  nameInput: {
+      fontSize: 30,
+       fontWeight: 'bold',
+       color: '#333333',
+      textAlign: 'center',
+      paddingVertical: 5,
+      paddingHorizontal: 10,
+      borderRadius: 5,
+      backgroundColor: '#F0F0F0',
+      minWidth: 75,
+       borderWidth: 0,
+       underlineColorAndroid: 'transparent',
+    },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -113,11 +192,11 @@ const styles = StyleSheet.create({
   label: {
     marginBottom: 5,
     fontWeight: 'bold',
-    fontSize: 20,
-    color: '#FFFFFF', // Updated to user requested text color
+    fontSize: 16,
+    color: '#333333', // Alterado para uma cor escura para ser visível
   },
   input: {
-    backgroundColor: '#FFFFFF', // White background for input fields
+    backgroundColor: '#F0F0F0', // Um cinza claro para o fundo do input
     borderRadius: 10,
     padding: 10,
     borderWidth: 1,
@@ -141,11 +220,11 @@ const styles = StyleSheet.create({
     width: '48%',
   },
   saveButton: {
-    backgroundColor: '#6A0DAD', // Darker purple for save button
+    backgroundColor: '#A367F0', // Darker purple for save button
   },
  
   cancelButton: {
-    backgroundColor: '#8A2BE2', // Medium purple for cancel button
+    backgroundColor: '#8D7EFB', // Medium purple for cancel button
   },
   buttonText: {
     color: '#FFFFFF',
@@ -153,5 +232,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
- 
+}
 export default PetScreen;

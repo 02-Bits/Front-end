@@ -13,7 +13,6 @@ const COLORS = {
   iconSafe: '#4C2F8A', // Roxo/Azul escuro para ícones normais
   avatarBg: '#F4EFF2', // Branco-rosado claro do círculo superior
 };
-
 // --- Componente de Item de Menu ---
 const MenuItem = ({ iconName, text, isDelete = false, onPress }) => (
   <TouchableOpacity 

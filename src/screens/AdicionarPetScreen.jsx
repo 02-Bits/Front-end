@@ -5,6 +5,7 @@ const AdicionarPetScreen = ({ navigation }) => {
   const [petData, setPetData] = useState({
     name: '',
     age: '',
+    species: '',
     size: '',
     breed: '',
     details: '',
@@ -28,6 +29,16 @@ const AdicionarPetScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.nameInputContainer}>
+          <TextInput
+            style={styles.nameInput}
+            placeholder="Nome do Pet"
+            placeholderTextColor="#888"
+            value={petData.name}
+            onChangeText={(text) => handleInputChange('name', text)}
+          />
+        </View>
+
         <View style={styles.imageContainer}>
           <Image
             style={styles.petImage}
@@ -37,22 +48,24 @@ const AdicionarPetScreen = ({ navigation }) => {
         <View style={styles.formContainer}>
           <View style={styles.row}>
             <View style={styles.inputGroup}>
-              <Text style={styles.label}>Nome</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Nome"
-                value={petData.name}
-                onChangeText={(text) => handleInputChange('name', text)}
-              />
-            </View>
-            <View style={styles.inputGroup}>
               <Text style={styles.label}>Idade</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Idade"
+                placeholder="Idade do Pet"
+                placeholderTextColor="#888"
                 value={petData.age}
                 onChangeText={(text) => handleInputChange('age', text)}
                 keyboardType="numeric"
+              />
+            </View>
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>Espécie</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Espécie do Pet"
+                placeholderTextColor="#888"
+                value={petData.species}
+                onChangeText={(text) => handleInputChange('species', text)}
               />
             </View>
           </View>
@@ -61,7 +74,8 @@ const AdicionarPetScreen = ({ navigation }) => {
               <Text style={styles.label}>Porte</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Porte"
+                placeholder="Porte do Pet"
+                placeholderTextColor="#888"
                 value={petData.size}
                 onChangeText={(text) => handleInputChange('size', text)}
               />
@@ -70,7 +84,8 @@ const AdicionarPetScreen = ({ navigation }) => {
               <Text style={styles.label}>Raça</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Raça"
+                placeholder="Raça do Pet"
+                placeholderTextColor="#888"
                 value={petData.breed}
                 onChangeText={(text) => handleInputChange('breed', text)}
               />
@@ -80,7 +95,8 @@ const AdicionarPetScreen = ({ navigation }) => {
             <Text style={styles.label}>Detalhes</Text>
             <TextInput
               style={[styles.input, styles.detailsInput]}
-              placeholder="Detalhes"
+              placeholder="Detalhes do Pet"
+              placeholderTextColor="#888"
               multiline
               value={petData.details}
               onChangeText={(text) => handleInputChange('details', text)}
@@ -129,6 +145,24 @@ const styles = StyleSheet.create({
   formContainer: {
     paddingHorizontal: 20,
   },
+  nameInputContainer: {
+    alignItems: 'center',
+    marginBottom: 15,
+    marginTop: 20,
+  },
+  nameInput: {
+      fontSize: 30,
+       fontWeight: 'bold',
+       color: '#333333',
+      textAlign: 'center',
+      paddingVertical: 5,
+      paddingHorizontal: 10,
+      borderRadius: 5,
+      backgroundColor: '#F0F0F0',
+      minWidth: 75,
+       borderWidth: 0,
+       underlineColorAndroid: 'transparent',
+    },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -144,15 +178,15 @@ const styles = StyleSheet.create({
   label: {
     marginBottom: 5,
     fontWeight: 'bold',
-    fontSize: 20,
-    color: '#000000', // Cor alterada para preto para melhor visibilidade
+    fontSize: 16,
+    color: '#333333', // Alterado para uma cor escura para ser visível
   },
   input: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F0F0F0', // Um cinza claro para o fundo do input
     borderRadius: 10,
     padding: 10,
     borderWidth: 1,
-    borderColor: '#D0D0D0',
+    borderColor: '#D0D0D0', // Lighter border for inputs
   },
   detailsInput: {
     height: 100,
@@ -166,21 +200,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   button: {
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 8,
     width: '48%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   addButton: {
-    backgroundColor: '#6A0DAD', // Cor para o botão Adicionar
+    backgroundColor: '#A367F0', // Cor para o botão Adicionar (igual ao Salvar de PetScreen)
   },
   cancelButton: {
-    backgroundColor: '#8A2BE2', // Cor para o botão Cancelar
+    backgroundColor: '#8D7EFB', // Cor para o botão Cancelar (igual ao Cancelar de PetScreen)
   },
   buttonText: {
     color: '#FFFFFF',
     fontWeight: 'bold',
-    textAlign: 'center',
+    fontSize: 16,
   },
 });
 

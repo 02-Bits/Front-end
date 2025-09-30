@@ -1,11 +1,23 @@
 // src/screens/PetList.jsx
 
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function PetList() {
   const navigation = useNavigation();
+
+  const [pets, setPets] = useState([
+    { id: 1, nome: 'Cachorro', idade: '2 anos', servico: 'Consulta urgente', horario: 'O mais antes possível', image: require('../assets/dog1.png'), porte: 'Médio', raca: 'Vira-lata', detalhes: 'Um cachorro muito animado.' },
+    { id: 2, nome: 'Cachorro', idade: '3 anos', servico: 'Vacinação', horario: 'Manhã', image: require('../assets/dog2.png'), porte: 'Pequeno', raca: 'Poodle', detalhes: 'Um poodle dócil e tranquilo.' },
+    { id: 3, nome: 'Gato', idade: '1 ano', servico: 'Consulta urgente', horario: 'Tarde', image: require('../assets/cat1.png'), porte: 'Pequeno', raca: 'Siamese', detalhes: 'Um gato curioso e brincalhão.' },
+  ]);
+
+  const updatePet = (updatedPet) => {
+    setPets(currentPets =>
+      currentPets.map(pet => (pet.id === updatedPet.id ? updatedPet : pet))
+    );
+  };
 
   const handleAddPet = () => {
     navigation.navigate('AddPet');
@@ -13,21 +25,18 @@ export default function PetList() {
 
   const handlePetPress = (pet) => {
     const petData = {
-      name: pet.nome,
-      age: pet.idade || 'Não informado',
-      size: pet.porte,
-      breed: pet.raca,
-      details: pet.detalhes,
+      id: pet.id,
+      nome: pet.nome,
+      idade: pet.idade || 'Não informado',
+      porte: pet.porte,
+      raca: pet.raca,
+      detalhes: pet.detalhes,
       image: pet.image,
+      servico: pet.servico,
+      horario: pet.horario,
     };
-    navigation.navigate('PetDetails', { petData });
+    navigation.navigate('PetDetails', { petData, onGoBack: updatePet });
   };
-
-  const pets = [
-    { id: 1, nome: 'Cachorro', idade: '2 anos', servico: 'Consulta urgente', horario: 'O mais antes possível', image: require('../assets/dog1.png'), porte: 'Médio', raca: 'Vira-lata', detalhes: 'Um cachorro muito animado.' },
-    { id: 2, nome: 'Cachorro', idade: '3 anos', servico: 'Vacinação', horario: 'Manhã', image: require('../assets/dog2.png'), porte: 'Pequeno', raca: 'Poodle', detalhes: 'Um poodle dócil e tranquilo.' },
-    { id: 3, nome: 'Gato', idade: '1 ano', servico: 'Consulta urgente', horario: 'Tarde', image: require('../assets/cat1.png'), porte: 'Pequeno', raca: 'Siamese', detalhes: 'Um gato curioso e brincalhão.' },
-  ];
 
   return (
     <View style={styles.container}>
