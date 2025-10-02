@@ -95,6 +95,22 @@ export default function HomeScreen() {
     setDetalhes('');
   };
 
+  // Função para atualizar um pet existente
+  const handleUpdatePet = (updatedPet) => {
+    setPets(prevPets => 
+      prevPets.map(pet => 
+        pet.id === updatedPet.id ? { 
+          ...pet, 
+          nome: updatedPet.name,
+          idade: updatedPet.age,
+          porte: updatedPet.size,
+          raca: updatedPet.breed,
+          detalhes: updatedPet.details
+        } : pet
+      )
+    );
+  };
+
   // Lógica para cancelar a adição
   const handleCancelAdd = () => {
     setShowAddForm(false);
@@ -109,9 +125,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Meus Pets</Text>
-      </View>
+      {/* Removido o cabeçalho interno "Meus Pets" */}
 
       {!showAddForm ? (
         <>
