@@ -1,113 +1,120 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import TabBar from '../components/TabBar';
  
-
 const PetScreen = ({ route }) => {
-  const { petData } = route.params;
+  const { petData: initialPetData, onSave } = route.params;
+  const navigation = useNavigation();
+  const [petData, setPetData] = useState(initialPetData);
+  const [isLoading, setIsLoading] = useState(true);
 
-const PetScreen = ({ route, navigation }) => {
-  const { petData, onGoBack } = route.params;
-
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [size, setSize] = useState('');
-  const [breed, setBreed] = useState('');
-  const [species, setSpecies] = useState('');
-  const [details, setDetails] = useState('');
-
+  // Carregar dados salvos quando o componente montar
   useEffect(() => {
-    if (petData) {
-      console.log('petData.nome:', petData.nome);
-      // Removemos a inicialização dos estados aqui para que os campos comecem vazios
-      // e o placeholder exiba os dados do pet.
-    }
-  }, [petData]);
+    loadSavedData();
+  }, []);
 
-  const handleSave = () => {
-    const updatedPet = {
-      id: petData.id,
-      nome: name || petData.nome,
-      idade: age || petData.idade,
-      especie: species || petData.especie,
-      porte: size || petData.porte,
-      raca: breed || petData.raca,
-      detalhes: details || petData.detalhes,
-      image: petData.image,
-      servico: petData.servico,
-      horario: petData.horario,
-    };
-    onGoBack(updatedPet);
-    navigation.goBack();
+  const loadSavedData = async () => {
+    try {
+      // Verificar se o AsyncStorage está disponível
+      if (typeof AsyncStorage !== 'undefined' && initialPetData.id) {
+        const savedData = await AsyncStorage.getItem(`pet_${initialPetData.id}`);
+        if (savedData) {
+          const parsedData = JSON.parse(savedData);
+          setPetData(parsedData);
+        }
+      }
+    } catch (error) {
+      console.error('Erro ao carregar dados:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleInputChange = (field, value) => {
+    setPetData(prevData => ({
+      ...prevData,
+      [field]: value
+    }));
+  };
+
+  const handleSave = async () => {
+    try {
+      // Salvar dados localmente no AsyncStorage (se disponível)
+      if (typeof AsyncStorage !== 'undefined' && petData.id) {
+        await AsyncStorage.setItem(`pet_${petData.id}`, JSON.stringify(petData));
+      }
+      
+      // Também chamar a função de callback se existir (para atualizar estado global)
+      if (onSave) {
+        onSave(petData);
+      }
+      
+      Alert.alert('Sucesso', 'Dados do pet salvos com sucesso!');
+      navigation.goBack();
+    } catch (error) {
+      console.error('Erro ao salvar dados:', error);
+      Alert.alert('Erro', 'Não foi possível salvar os dados do pet.');
+    }
   };
 
   const handleCancel = () => {
     navigation.goBack();
   };
 
-
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.nameInputContainer}>
+        {/* Título Nome acima da imagem - Agora editável */}
+        <View style={styles.nameTitleContainer}>
           <TextInput
-            style={styles.nameInput}
-            onChangeText={setName}
-            value={name}
-            placeholder={petData?.nome || 'Nome do Pet'}
-            placeholderTextColor="#888"
+            style={styles.nameTitleInput}
+            placeholder="Nome do Pet"
+            value={petData.name}
+            onChangeText={(text) => handleInputChange('name', text)}
+            textAlign="center"
+            clearButtonMode="while-editing"
           />
         </View>
-
+        
         <View style={styles.imageContainer}>
           <Image
-            style={styles.petImage}
-            source={petData.image}
-          />
+              style={styles.petImage}
+              source={petData.image}
+            />
         </View>
+        
         <View style={styles.formContainer}>
           <View style={styles.row}>
             <View style={styles.inputGroup}>
               <Text style={styles.label}>Idade</Text>
               <TextInput
                 style={styles.input}
-                onChangeText={setAge}
-                value={age}
-                placeholder={petData?.idade || 'Idade do Pet'}
-                placeholderTextColor="#888"
+                placeholder="Ex: 2 anos, 6 meses"
+                value={petData.age}
+                onChangeText={(text) => handleInputChange('age', text)}
                 keyboardType="numeric"
               />
             </View>
             <View style={styles.inputGroup}>
-              <Text style={styles.label}>Espécie</Text>
+              <Text style={styles.label}>Porte</Text>
               <TextInput
                 style={styles.input}
-                onChangeText={setSpecies}
-                value={species}
-                placeholder={petData?.especie || 'Espécie do Pet'}
-                placeholderTextColor="#888"
+                placeholder="Ex: Pequeno, Médio"
+                value={petData.size}
+                onChangeText={(text) => handleInputChange('size', text)}
               />
             </View>
           </View>
           <View style={styles.row}>
             <View style={styles.inputGroup}>
-              <Text style={styles.label}>Porte</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={setSize}
-                value={size}
-                placeholder={petData?.porte || 'Porte do Pet'}
-                placeholderTextColor="#888"
-              />
-            </View>
-            <View style={styles.inputGroup}>
               <Text style={styles.label}>Raça</Text>
               <TextInput
                 style={styles.input}
-                onChangeText={setBreed}
-                value={breed}
-                placeholder={petData?.raca || 'Raça do Pet'}
-                placeholderTextColor="#888"
+                placeholder="Ex: Vira-lata, Poodle"
+                value={petData.breed}
+                onChangeText={(text) => handleInputChange('breed', text)}
               />
             </View>
           </View>
@@ -115,23 +122,23 @@ const PetScreen = ({ route, navigation }) => {
             <Text style={styles.label}>Detalhes</Text>
             <TextInput
               style={[styles.input, styles.detailsInput]}
-              onChangeText={setDetails}
-              value={details}
-              placeholder={petData?.detalhes || 'Detalhes do Pet'}
-              placeholderTextColor="#888"
+              placeholder="Ex: Gosta de brincar, medroso com barulhos"
               multiline
+              value={petData.details}
+              onChangeText={(text) => handleInputChange('details', text)}
             />
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={[styles.button, styles.saveButton]}>
+          <TouchableOpacity style={[styles.button, styles.saveButton]} onPress={handleSave}>
             <Text style={styles.buttonText}>Salvar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.cancelButton]}>
+          <TouchableOpacity style={[styles.button, styles.cancelButton]} onPress={handleCancel}>
             <Text style={styles.buttonText}>Cancelar</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
+
     </View>
   );
 };
@@ -159,24 +166,6 @@ const styles = StyleSheet.create({
   formContainer: {
     paddingHorizontal: 20,
   },
-  nameInputContainer: {
-    alignItems: 'center',
-    marginBottom: 15,
-    marginTop: 20,
-  },
-  nameInput: {
-      fontSize: 30,
-       fontWeight: 'bold',
-       color: '#333333',
-      textAlign: 'center',
-      paddingVertical: 5,
-      paddingHorizontal: 10,
-      borderRadius: 5,
-      backgroundColor: '#F0F0F0',
-      minWidth: 75,
-       borderWidth: 0,
-       underlineColorAndroid: 'transparent',
-    },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -189,18 +178,36 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 15,
   },
-  label: {
-    marginBottom: 5,
+  nameTitleContainer: {
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  nameTitleInput: {
+    fontSize: 28,
     fontWeight: 'bold',
-    fontSize: 16,
-    color: '#333333', // Alterado para uma cor escura para ser visível
+    color: '#6A0DAD',
+    textAlign: 'center',
+    padding: 10,
+    backgroundColor: 'transparent',
+    borderBottomWidth: 1, // Linha menos grossa
+    borderBottomColor: '#8A2BE2', // Mesma cor do botão de cancelar
+    minWidth: 200,
+    placeholderTextColor: '#9CA3AF', // Cinza mais suave para o placeholder
+  },
+  label: {
+    marginBottom: 8,
+    fontWeight: 'bold',
+    fontSize: 18,
+    color: '#6A0DAD', // Purple color for better visibility on white background
   },
   input: {
-    backgroundColor: '#F0F0F0', // Um cinza claro para o fundo do input
+    backgroundColor: '#F8F9FA', // Grayish background for inputs as requested
     borderRadius: 10,
-    padding: 10,
+    padding: 12,
     borderWidth: 1,
-    borderColor: '#D0D0D0', // Lighter border for inputs
+    borderColor: '#E9ECEF', // Light border color
+    fontSize: 16,
+    color: '#212529', // Dark text color for better readability
   },
   detailsInput: {
     height: 100,
@@ -220,11 +227,11 @@ const styles = StyleSheet.create({
     width: '48%',
   },
   saveButton: {
-    backgroundColor: '#A367F0', // Darker purple for save button
+    backgroundColor: '#6A0DAD', // Darker purple for save button
   },
  
   cancelButton: {
-    backgroundColor: '#8D7EFB', // Medium purple for cancel button
+    backgroundColor: '#8A2BE2', // Medium purple for cancel button
   },
   buttonText: {
     color: '#FFFFFF',
@@ -232,5 +239,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-}
+ 
 export default PetScreen;
