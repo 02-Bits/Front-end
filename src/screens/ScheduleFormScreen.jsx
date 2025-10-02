@@ -114,7 +114,6 @@ const ScheduleFormScreen = ({ navigation, route }) => {
       };
       const appointmentData = {
         ...formData,
-        date: formData.date.toISOString().split('T')[0], // Garante que a data seja passada como YYYY-MM-DD
         pet: petMap[formData.pet] || { id: 'unknown', name: formData.pet, image: 'https://via.placeholder.com/100' }
       };
       navigation.navigate('SelectVetScreen', { appointmentData });
