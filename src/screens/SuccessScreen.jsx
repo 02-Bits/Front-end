@@ -8,7 +8,14 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const SuccessScreen = () => {
+const SuccessScreen = ({ route }) => {
+  // Recebe os dados do agendamento da tela anterior
+  const { date, time, vet } = route?.params || {};
+  
+  // Usa os dados recebidos ou valores padrão
+  const displayDate = date || 'Data não especificada';
+  const displayTime = time || 'Horário não especificado';
+  const displayVet = vet?.name || 'Veterinário não especificado';
   return (
     <View style={styles.container}>
       {/* Background com imagem desfocada */}
@@ -30,23 +37,22 @@ const SuccessScreen = () => {
           {/* Mensagem de sucesso */}
           <Text style={styles.successTitle}>Consulta agendada</Text>
           <Text style={styles.successMessage}>
-            Sua consulta foi agendada com sucesso! 
-            Você receberá uma confirmação por e-mail.
+            Sua consulta foi agendada com sucesso!
           </Text>
           
           {/* Informações adicionais */}
           <View style={styles.infoContainer}>
             <View style={styles.infoRow}>
               <Ionicons name="calendar" size={20} color="#6B7280" />
-              <Text style={styles.infoText}>18 de Setembro de 2025</Text>
+              <Text style={styles.infoText}>{displayDate}</Text>
             </View>
             <View style={styles.infoRow}>
               <Ionicons name="time" size={20} color="#6B7280" />
-              <Text style={styles.infoText}>11:30</Text>
+              <Text style={styles.infoText}>{displayTime}</Text>
             </View>
             <View style={styles.infoRow}>
               <Ionicons name="person" size={20} color="#6B7280" />
-              <Text style={styles.infoText}>Dra. Ana Silva</Text>
+              <Text style={styles.infoText}>{displayVet}</Text>
             </View>
           </View>
         </View>
