@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -10,7 +10,9 @@ import {
 } from 'react-native';
 
 const ReviewScreen = ({ navigation, route }) => {
-  const [isModalVisible, setIsModalVisible] = React.useState(false);
+  // Estado para controlar a visibilidade do modal
+  const [modalVisible, setModalVisible] = useState(false);
+  
   // Recebe dados via navegação
   const {
     pet = { name: 'Luna', image: 'https://images.unsplash.com/photo-1560809453-57b495cce980?w=100&h=100&fit=crop&crop=face' },
@@ -22,14 +24,14 @@ const ReviewScreen = ({ navigation, route }) => {
     observations = ['Vacinação', 'Check-up']
   } = route?.params || {};
 
-  const formattedDate = date instanceof Date ? date.toLocaleDateString('pt-BR') : date;
-  const formattedTime = time instanceof Date ? time.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : time;
+  const formattedDate = date instanceof Date ? date.toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' }) : date;
+  const formattedTime = time instanceof Date ? time.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo' }) : time;
 
   // Garante compatibilidade quando o veterinário possui a propriedade `photo` em vez de `image`
-   const vetImageSource = vet.image || vet.photo || 'https://via.placeholder.com/80';
-   const petImageSource = pet.image || pet.photo || 'https://via.placeholder.com/100';
+  const vetImageSource = vet.image || vet.photo || 'https://via.placeholder.com/80';
+  const petImageSource = pet.image || pet.photo || 'https://via.placeholder.com/100';
    
-   const handleConfirmAppointment = () => {
+  const handleConfirmAppointment = () => {
     // Simulação de envio para API
     console.log('Dados do agendamento:', {
       petId: pet.id,
@@ -40,11 +42,18 @@ const ReviewScreen = ({ navigation, route }) => {
       reason
     });
 
-    setIsModalVisible(true);
-    setTimeout(() => {
-      setIsModalVisible(false);
-      navigation.navigate('SuccessScreen');
-    }, 2000); // Mostra o modal por 2 segundos antes de navegar
+    // Exibir o modal personalizado
+    setModalVisible(true);
+  };
+  
+  const handleNavigateToSuccess = () => {
+    setModalVisible(false);
+    // Passa os dados do agendamento para a tela de sucesso
+    navigation.navigate('SuccessScreen', {
+      date: formattedDate,
+      time: formattedTime,
+      vet: vet
+    });
   };
 
   return (
@@ -126,16 +135,29 @@ const ReviewScreen = ({ navigation, route }) => {
           <Text style={styles.confirmButtonText}>Concluído</Text>
         </TouchableOpacity>
       </ScrollView>
-
+      
+      {/* Modal de Confirmação */}
       <Modal
         animationType="fade"
         transparent={true}
-        visible={isModalVisible}
-        onRequestClose={() => setIsModalVisible(false)}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Consulta agendada</Text>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <View style={styles.modalIconContainer}>
+              <Text style={styles.modalIcon}>✓</Text>
+            </View>
+            <Text style={styles.modalTitle}>Sucesso</Text>
+            <Text style={styles.modalMessage}>
+              Consulta agendada com sucesso!
+            </Text>
+            <TouchableOpacity
+              style={styles.modalButton}
+              onPress={handleNavigateToSuccess}
+            >
+              <Text style={styles.modalButtonText}>OK</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -285,31 +307,64 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  centeredView: {
+  // Estilos do Modal
+  modalOverlay: {
     flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)', // Fundo embaçado
+    padding: 20,
   },
-  modalView: {
-    margin: 20,
+  modalContent: {
     backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
+    borderRadius: 16,
+    padding: 24,
+    width: '90%',
+    maxWidth: 340,
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
   },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
+  modalIconContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: '#E9DBFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  modalIcon: {
+    fontSize: 32,
+    color: '#A367F0',
+    fontWeight: 'bold',
+  },
+  modalTitle: {
     fontSize: 20,
+    fontWeight: 'bold',
+    color: '#374151',
+    marginBottom: 8,
+  },
+  modalMessage: {
+    fontSize: 16,
+    color: '#6B7280',
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+  modalButton: {
+    backgroundColor: '#A367F0',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    width: '100%',
+    alignItems: 'center',
+  },
+  modalButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });
