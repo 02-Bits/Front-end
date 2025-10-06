@@ -91,7 +91,7 @@ const PetScreen = ({ route }) => {
               <Text style={styles.label}>Idade</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Ex: 2 anos, 6 meses"
+                placeholder="2 anos, 6 meses"
                 value={petData.age}
                 onChangeText={(text) => handleInputChange('age', text)}
                 keyboardType="numeric"
@@ -101,7 +101,7 @@ const PetScreen = ({ route }) => {
               <Text style={styles.label}>Porte</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Ex: Pequeno, Médio"
+                placeholder="Pequeno, Médio"
                 value={petData.size}
                 onChangeText={(text) => handleInputChange('size', text)}
               />
@@ -112,9 +112,18 @@ const PetScreen = ({ route }) => {
               <Text style={styles.label}>Raça</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Ex: Vira-lata, Poodle"
+                placeholder="Vira-lata, Poodle"
                 value={petData.breed}
                 onChangeText={(text) => handleInputChange('breed', text)}
+              />
+            </View>
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>Espécie</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Cachorro, Gato"
+                value={petData.species}
+                onChangeText={(text) => handleInputChange('species', text)}
               />
             </View>
           </View>
@@ -122,7 +131,7 @@ const PetScreen = ({ route }) => {
             <Text style={styles.label}>Detalhes</Text>
             <TextInput
               style={[styles.input, styles.detailsInput]}
-              placeholder="Ex: Gosta de brincar, medroso com barulhos"
+              placeholder="Gosta de brincar, medroso com barulhos"
               multiline
               value={petData.details}
               onChangeText={(text) => handleInputChange('details', text)}
@@ -208,6 +217,7 @@ const styles = StyleSheet.create({
     borderColor: '#E9ECEF', // Light border color
     fontSize: 16,
     color: '#212529', // Dark text color for better readability
+    placeholderTextColor: '#6B7280', // Cinza mais escuro para os placeholders
   },
   detailsInput: {
     height: 100,
