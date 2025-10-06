@@ -1,10 +1,15 @@
 // src/screens/PetList.jsx
 
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function PetList({ onUpdatePet }) {
+  const [pets, setPets] = useState([
+    { id: 1, nome: 'Cachorro', idade: '2 anos', servico: 'Consulta urgente', horario: 'O mais antes possível', image: require('../assets/dog1.png'), porte: 'Médio', raca: 'Vira-lata', detalhes: 'Um cachorro muito animado.' },
+    { id: 2, nome: 'Cachorro', idade: '3 anos', servico: 'Vacinação', horario: 'Manhã', image: require('../assets/dog2.png'), porte: 'Pequeno', raca: 'Poodle', detalhes: 'Um poodle dócil e tranquilo.' },
+    { id: 3, nome: 'Gato', idade: '1 ano', servico: 'Consulta urgente', horario: 'Tarde', image: require('../assets/cat1.png'), porte: 'Pequeno', raca: 'Siamese', detalhes: 'Um gato curioso e brincalhão.' },
+  ]);
   const navigation = useNavigation();
 
   const handleAddPet = () => {
@@ -21,20 +26,37 @@ export default function PetList({ onUpdatePet }) {
       image: pet.image,
       id: pet.id, // Adicionar ID para identificar qual pet atualizar
     };
+    
+    const handleSavePet = (updatedPet) => {
+      // Atualizar o estado local com as informações do pet atualizado
+      setPets(prevPets => 
+        prevPets.map(p => 
+          p.id === updatedPet.id ? { 
+            ...p, 
+            nome: updatedPet.name,
+            idade: updatedPet.age,
+            porte: updatedPet.size,
+            raca: updatedPet.breed,
+            detalhes: updatedPet.details
+          } : p
+        )
+      );
+      
+      // Chamar a função onUpdatePet se fornecida (para persistência externa)
+      if (onUpdatePet) {
+        onUpdatePet(updatedPet);
+      } else {
+        console.log('Pet atualizado (localmente):', updatedPet);
+      }
+    };
+    
     navigation.navigate('PetDetails', { 
       petData,
-      onSave: onUpdatePet || ((updatedPet) => {
-        // Fallback para debug se onUpdatePet não estiver disponível
-        console.log('Pet atualizado (sem persistência):', updatedPet);
-      })
+      onSave: handleSavePet
     });
   };
 
-  const pets = [
-    { id: 1, nome: 'Cachorro', idade: '2 anos', servico: 'Consulta urgente', horario: 'O mais antes possível', image: require('../assets/dog1.png'), porte: 'Médio', raca: 'Vira-lata', detalhes: 'Um cachorro muito animado.' },
-    { id: 2, nome: 'Cachorro', idade: '3 anos', servico: 'Vacinação', horario: 'Manhã', image: require('../assets/dog2.png'), porte: 'Pequeno', raca: 'Poodle', detalhes: 'Um poodle dócil e tranquilo.' },
-    { id: 3, nome: 'Gato', idade: '1 ano', servico: 'Consulta urgente', horario: 'Tarde', image: require('../assets/cat1.png'), porte: 'Pequeno', raca: 'Siamese', detalhes: 'Um gato curioso e brincalhão.' },
-  ];
+
 
   return (
     <View style={styles.container}>
