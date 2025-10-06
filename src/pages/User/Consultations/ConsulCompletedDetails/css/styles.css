@@ -1,4 +1,6 @@
-/* Estilo geral da página de detalhes */
+/* =================================================== */
+/* ESTILOS PARA DETALHES DA CONSULTA CONCLUÍDA */
+/* =================================================== */
 .pets-details-page {
   display: flex;
   flex-direction: column;
@@ -123,6 +125,7 @@
   color: #555;
   border: 1px solid #ddd;
 }
+
 .back-button:hover {
   background-color: #e0e0e0;
 }
@@ -131,13 +134,12 @@
   background-color: #ff4d4d;
   color: white;
 }
+
 .remove-button:hover {
   background-color: #e63939;
 }
 
-
 /* --- Estilos Específicos para a Seção de Avaliação --- */
-
 .doctor-section {
   margin-top: 30px;
   padding-top: 20px;
@@ -226,36 +228,35 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 .submit-rating:hover {
   background-color: #f0f0f0;
 }
 
-/* ====== ESTILOS PARA O NOVO BOTÃO DE RELATÓRIO ====== */
+/* ====== ESTILOS PARA O BOTÃO DE RELATÓRIO ====== */
 .report-section {
-    text-align: center;
-    margin-top: 30px;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .report-button {
-    background-color: #4CAF50; /* Verde para se destacar */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 30px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .report-button:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
-/* =================================================== */
-
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -264,12 +265,38 @@
     gap: 15px;
     margin-bottom: 15px;
   }
+  
   .doctor-rating-container {
     flex-direction: column;
     align-items: stretch;
     text-align: center;
   }
+  
   .rating-controls {
     align-items: center;
+  }
+  
+  .doctor-info {
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  
+  .details-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .back-button, .remove-button {
+    width: 100%;
+  }
+  
+  .pet-details-wrapper {
+    width: 95%;
+    padding: 20px 15px;
+  }
+  
+  .pet-details-container {
+    width: calc(100% - 30px);
+    padding: 20px;
   }
 }

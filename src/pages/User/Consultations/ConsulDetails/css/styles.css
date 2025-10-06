@@ -1,4 +1,6 @@
-/* Estilo da página de detalhes */
+/* =================================================== */
+/* ESTILOS PARA DETALHES DA CONSULTA */
+/* =================================================== */
 .consul-details-page {
   display: flex;
   flex-direction: column;
@@ -28,7 +30,6 @@
   display: inline-block;
   margin-top: 0.5rem;
 }
-
 
 /* Container externo */
 .details-wrapper {
