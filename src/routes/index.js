@@ -29,13 +29,13 @@ import VetChat from '../pages/Vet/Chat/Chat';
 import VetCalendario from "../pages/Vet/Calendario/Calendario";
 
 // Imports do Admin
-import VetList from '../pages/Admin/VetList/VetList';
-import AdminDashboard from "../pages/Admin/Dashboard/Dashboard";
-import PacientesList from '../pages/Admin/PacientesList/PacientesList';
-import AdminConsultas from '../pages/Admin/Consultas/Consultas';
-import AdminRelatorios from '../pages/Admin/Relatorios/Relatorios';
-import AdminPerfil from '../pages/Admin/Perfil/Perfil';
-import AdminChat from '../pages/Admin/Chat/Chat'; 
+import VetList from '../pages/admin/VetList/VetList';
+import AdminDashboard from "../pages/admin/Dashboard/Dashboard";
+import PacientesList from '../pages/admin/PacientesList/PacientesList';
+import AdminConsultas from '../pages/admin/Consultas/Consultas';
+import AdminRelatorios from '../pages/admin/Relatorios/Relatorios';
+import AdminPerfil from '../pages/admin/Perfil/Perfil';
+import AdminChat from '../pages/admin/Chat/Chat'; 
 
 
 export default function AppRoutes() {
