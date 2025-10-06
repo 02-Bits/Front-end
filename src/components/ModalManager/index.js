@@ -82,8 +82,8 @@ const ModalManager = ({ initialModal, onClose }) => {
           <ModalUser 
             onClose={onClose}
             switchToVet={switchToVet}
-            openRegister={switchToRegisterUser}
-            onLoginSuccess={handleLoginSuccess} // Passa a função de sucesso
+            switchToRegisterUser={switchToRegisterUser}
+            onLoginSuccess={handleLoginSuccess}
           />
         );
       case 'vet':
@@ -91,26 +91,26 @@ const ModalManager = ({ initialModal, onClose }) => {
           <ModalVet 
             onClose={onClose}
             switchToUser={switchToUser}
-            openRegister={switchToRegisterVet}
-            onLoginSuccess={handleLoginSuccess} // Passa a função de sucesso
+            switchToRegisterVet={switchToRegisterVet}
+            onLoginSuccess={handleLoginSuccess}
           />
         );
       case 'register-user':
         return (
           <ModalRegisterUser 
             onClose={onClose}
-            switchToVet={switchToRegisterVet}
+            switchToVet={switchToRegisterVet} // CORRIGIDO: Agora vai para register-vet
             openLogin={switchToUser}
-            onRegisterSuccess={(email, password) => handleRegisterSuccess(email, password, 'USER')} // Passa a função de sucesso
+            onRegisterSuccess={(email, password) => handleRegisterSuccess(email, password, 'USER')}
           />
         );
       case 'register-vet':
         return (
           <ModalRegisterVet 
             onClose={onClose}
-            switchToUser={switchToRegisterUser}
+            switchToUser={switchToRegisterUser} // CORRIGIDO: Agora vai para register-user
             openLogin={switchToVet}
-            onRegisterSuccess={(email, password) => handleRegisterSuccess(email, password, 'VETERINARY')} // Passa a função de sucesso
+            onRegisterSuccess={(email, password) => handleRegisterSuccess(email, password, 'VETERINARY')}
           />
         );
       default:

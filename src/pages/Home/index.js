@@ -10,7 +10,8 @@ import Footer from '../../components/Footer';
 import './css/styles.css';
 
 import HeaderSemCadastro from '../../components/HeaderSemCadastro';
-import HeaderComCadastro from '../../components/HeaderComCadastro'; 
+import HeaderComCadastro from '../../components/HeaderComCadastro';
+import { FaPaw, FaHeart, FaCalendarAlt, FaUserMd } from 'react-icons/fa'; 
 
 
 const Home = () => {
@@ -91,14 +92,23 @@ const Home = () => {
           </div>
           <div id="info_quadro_numeros">
             <div className="numero-item">
+              <div className="icon-container">
+                <FaUserMd className="stat-icon" />
+              </div>
               <span className="numero">120+</span>
               <span className="label">Clientes</span>
             </div>
             <div className="numero-item">
+              <div className="icon-container">
+                <FaPaw className="stat-icon" />
+              </div>
               <span className="numero">130+</span>
               <span className="label">Animais em nosso cuidado</span>
             </div>
             <div className="numero-item">
+              <div className="icon-container">
+                <FaHeart className="stat-icon" />
+              </div>
               <span className="numero">145+</span>
               <span className="label">Parceiros</span>
             </div>

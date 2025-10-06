@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
 import './css/styles.css';
 import logo from '../../assets/images/Header/LogoPet_vita(Atualizado).png';
 
-const ModalUser = ({ onClose, switchToVet }) => {
-  const { login } = useAuth();
-  const navigate = useNavigate();
-  
+const ModalUser = ({ onClose, switchToVet, switchToRegisterUser, onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -19,24 +14,8 @@ const ModalUser = ({ onClose, switchToVet }) => {
     setLoading(true);
 
     try {
-      const loggedInUser = await login(email, password);
-      onClose();
-
-      // Redireciona com base na 'role' do usuário
-      switch(loggedInUser.role) {
-        case 'ADMIN':
-          navigate('/admin/dashboard');
-          break;
-        case 'VETERINARY':
-          navigate('/vet/dashboard');
-          break;
-        case 'USER':
-          navigate('/'); // Usuário comum vai para a Home logado
-          break;
-        default:
-          navigate('/');
-      }
-
+      await onLoginSuccess(email, password);
+      // O redirecionamento é feito no ModalManager após login bem-sucedido
     } catch (err) {
       setError('E-mail ou senha inválidos. Por favor, tente novamente.');
       console.error(err);
@@ -95,7 +74,9 @@ const ModalUser = ({ onClose, switchToVet }) => {
         </form>
         <div className="links">
           <button type="button" className="link-button" onClick={onClose}>Voltar</button>
-          <button type="button" className="link-button">Cadastrar-se</button>
+          <button type="button" className="link-button" onClick={switchToRegisterUser}>
+            Cadastrar-se
+          </button>
         </div>
       </div>
     </div>

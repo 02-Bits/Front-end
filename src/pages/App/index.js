@@ -34,12 +34,6 @@ const App = () => {
           </div>
         </div>
 
-        <div className="arrow bounce">↓</div>
-
-        <button className="cta-button animated-fade-in">
-          CLIQUE AQUI PARA BAIXAR O APP
-        </button>
-
         {/* Seção de estatísticas */}
         <div className="stats">
           {/* Veterinários */}

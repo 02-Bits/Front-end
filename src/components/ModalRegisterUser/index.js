@@ -110,6 +110,18 @@ const ModalRegisterUser = ({ onClose, switchToVet, openLogin }) => {
               onChange={handleChange} 
             />
           </div>
+
+          <div className="input-group">
+            <label htmlFor="confirmPassword">Confirmar Senha</label>
+            <input 
+              type="password" 
+              id="confirmPassword" 
+              placeholder="Digite a senha novamente" 
+              required 
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+          </div>
           
           <div className="input-group">
             <label htmlFor="phone">Telefone</label>
