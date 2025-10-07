@@ -3,6 +3,7 @@ import HeaderAdmin from '../../../components/HeaderAdmin/HeaderAdmin';
 import Footer from '../../../components/Footer';
 import api from '../../../services/api';
 import { FaEdit, FaTrash, FaPlus, FaSearch, FaSave, FaTimes } from 'react-icons/fa';
+import AddPatientModal from './AddPatientModal'; // Importar o modal
 import './css/PacientesList.css';
 
 const PacientesList = () => {
@@ -13,18 +14,15 @@ const PacientesList = () => {
     const [editingId, setEditingId] = useState(null);
     const [editFormData, setEditFormData] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false); // Estado do modal
     
     const fetchPacientes = useCallback(async () => {
         setLoading(true);
         setError('');
         try {
-            const params = {};
-            if (searchTerm) params.name = searchTerm;
+            const params = { name: searchTerm };
             
-            // O endpoint /admin/users busca por nome, mas para listar todos os "pacientes",
-            // teríamos que filtrar pelo 'role' no front-end após a busca.
             const response = await api.get('/admin/users', { params });
-            // Filtramos para mostrar apenas usuários com a role 'USER'
             const clientUsers = response.data.filter(user => user.role === 'USER');
             setPacientes(clientUsers);
 
@@ -40,11 +38,19 @@ const PacientesList = () => {
         fetchPacientes();
     }, [fetchPacientes]);
 
+    // Callback para atualizar a lista após adição
+    const handlePatientAdded = () => {
+        setIsModalOpen(false);
+        fetchPacientes();
+    };
+
     const handleEditClick = (paciente) => {
         setEditingId(paciente.id);
         setEditFormData({ ...paciente });
     };
+
     const handleCancelClick = () => setEditingId(null);
+
     const handleFormChange = (e) => {
         const { name, value } = e.target;
         setEditFormData(prev => ({ ...prev, [name]: value }));
@@ -52,11 +58,11 @@ const PacientesList = () => {
 
     const handleSaveClick = async (id) => {
         try {
-            // O backend espera um DTO específico para update
             const updateDTO = {
                 username: editFormData.username,
                 email: editFormData.email,
                 phone: editFormData.phone
+                // Adicione outros campos do UserUpdateRequestDTO se necessário
             };
             await api.put(`/admin/users/${id}`, updateDTO);
             setEditingId(null);
@@ -87,7 +93,9 @@ const PacientesList = () => {
             <main className="admin-content">
                 <div className="admin-page-header">
                     <h1>Gerenciar Pacientes</h1>
-                    <button className="add-new-button"><FaPlus /> Adicionar Novo</button>
+                    <button className="add-new-button" onClick={() => setIsModalOpen(true)}>
+                        <FaPlus /> Adicionar Novo
+                    </button>
                 </div>
                 <div className="admin-filters">
                     <div className="search-bar">
@@ -123,7 +131,6 @@ const PacientesList = () => {
                                 ) : (
                                     <>
                                         <div className="card-header-admin">
-                                            {/* O backend não provê avatar para usuário, usamos um placeholder */}
                                             <div className="card-avatar-placeholder">{p.username.charAt(0)}</div>
                                             <span className="card-title">{p.username}</span>
                                         </div>
@@ -142,6 +149,9 @@ const PacientesList = () => {
                     </div>
                 )}
             </main>
+            
+            {isModalOpen && <AddPatientModal onClose={() => setIsModalOpen(false)} onPatientAdded={handlePatientAdded} />}
+            
             <Footer />
         </div>
     );

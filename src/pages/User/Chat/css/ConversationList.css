@@ -1,0 +1,110 @@
+.conversation-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  padding-top: 110px; /* Espaço para o header fixo */
+}
+
+.list-container {
+  max-width: 900px;
+  width: 90%;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', sans-serif;
+}
+
+.list-header {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #EBE4F4;
+  text-align: center;
+}
+
+.list-header h1 {
+  margin: 0;
+  color: #333;
+  font-size: 1.8rem;
+}
+
+.conversation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.conversation-item-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.conversation-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 12px;
+  background-color: #f9f7ff;
+  border: 1px solid #EBE4F4;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.conversation-item:hover {
+  background-color: #f0ebff;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+.avatar-placeholder {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #8D7EFB;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.conversation-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.conversation-name {
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.conversation-subtitle {
+  color: #888;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Adicione no final do arquivo ConversationList.css */
+
+.conversation-subtitle {
+  color: #777; /* Cor um pouco mais escura para o subtítulo principal */
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.conversation-details {
+  color: #999; /* Cor mais clara para detalhes secundários */
+  font-size: 0.8rem;
+  margin-top: 4px;
+}

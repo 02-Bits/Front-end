@@ -1,30 +1,34 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import HeaderAdmin from '../../../components/HeaderAdmin/HeaderAdmin';
 import Footer from '../../../components/Footer';
-import api from '../../../services/api'; // Importa nosso serviço de API
+import api from '../../../services/api'; 
 import { FaEdit, FaTrash, FaPlus, FaSearch, FaSave, FaTimes } from 'react-icons/fa';
+import AddVetModal from './AddVetModal.js'; // Importar o modal
 import './css/VetList.css';
+
+const specialityOptions = [
+    "CLINICO_GERAL", "ANESTESIOLOGIA", "CARDIOLOGIA", "DERMATOLOGIA", "ENDOCRINOLOGIA",
+    "GASTROENTEROLOGIA", "NEUROLOGIA", "NUTRICAO", "OFTALMOLOGIA", "ONCOLOGIA",
+    "ORTOPEDIA", "REPRODUCAO_ANIMAL", "PATOLOGIA", "CIRURGIA_GERAL", "CIRURGIA_ORTOPEDICA",
+    "ODONTOLOGIA", "ZOOTECNIA", "EXOTICOS", "ACUPUNTURA", "FISIOTERAPIA", "IMAGINOLOGIA"
+];
 
 const VetList = () => {
     const [vets, setVets] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     
-    // Estados para edição inline
     const [editingId, setEditingId] = useState(null);
     const [editFormData, setEditFormData] = useState({});
 
-    // Estados para filtros
     const [searchTerm, setSearchTerm] = useState('');
     const [specialtyFilter, setSpecialtyFilter] = useState('');
-    const [specialties, setSpecialties] = useState([]); // Será preenchido pela API
+    const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar o modal
 
-    // Função para buscar os dados da API
     const fetchVets = useCallback(async () => {
         setLoading(true);
         setError('');
         try {
-            // Monta os parâmetros da busca
             const params = {};
             if (searchTerm) params.name = searchTerm;
             if (specialtyFilter) params.speciality = specialtyFilter;
@@ -32,56 +36,64 @@ const VetList = () => {
             const response = await api.get('/admin/veterinarians', { params });
             setVets(response.data);
             
-            // Extrai as especialidades únicas para o filtro
-            const uniqueSpecialties = [...new Set(response.data.map(v => v.specialityenum))];
-            setSpecialties(uniqueSpecialties);
-
         } catch (err) {
             setError('Falha ao buscar veterinários.');
             console.error(err);
         } finally {
             setLoading(false);
         }
-    }, [searchTerm, specialtyFilter]); // Roda novamente quando os filtros mudam
+    }, [searchTerm, specialtyFilter]);
 
     useEffect(() => {
         fetchVets();
     }, [fetchVets]);
 
-    // Funções de Edição
+    // Função para ser chamada quando um vet é adicionado com sucesso
+    const handleVetAdded = () => {
+        setIsModalOpen(false);
+        fetchVets(); // Atualiza a lista
+    };
+
     const handleEditClick = (vet) => {
         setEditingId(vet.id);
-        setEditFormData({ ...vet, specialty: vet.specialityenum }); // Ajuste para o nome do campo
+        setEditFormData({ 
+            name: vet.name,
+            email: vet.email,
+            crmv: vet.crmv,
+            specialityenum: vet.specialityenum,
+            phone: vet.phone,
+            imageurl: vet.imageurl,
+            rg: vet.rg || ''
+        });
     };
+
     const handleCancelClick = () => setEditingId(null);
+
     const handleFormChange = (e) => {
         const { name, value } = e.target;
         setEditFormData(prevData => ({ ...prevData, [name]: value }));
     };
 
-    // Função para SALVAR (PUT)
     const handleSaveClick = async (id) => {
         try {
-            const dataToUpdate = { ...editFormData, specialityenum: editFormData.specialty };
-            await api.put(`/admin/veterinarians/${id}`, dataToUpdate);
+            await api.put(`/admin/veterinarians/${id}`, editFormData);
             setEditingId(null);
-            fetchVets(); // Recarrega a lista para mostrar os dados atualizados
+            fetchVets();
             alert('Veterinário atualizado com sucesso!');
         } catch (err) {
-            alert('Erro ao salvar. Verifique o console.');
-            console.error(err);
+            alert('Erro ao salvar. Verifique os dados e tente novamente.');
+            console.error(err.response?.data || err);
         }
     };
     
-    // Função para DELETAR
     const handleDelete = async (vet) => {
         if (window.confirm(`Tem certeza que deseja excluir ${vet.name}?`)) {
             try {
                 await api.delete(`/admin/veterinarians/${vet.id}`);
-                fetchVets(); // Recarrega a lista
+                fetchVets();
                 alert(`${vet.name} excluído com sucesso!`);
             } catch (err) {
-                alert('Erro ao excluir. Verifique o console.');
+                alert('Erro ao excluir. Verifique se o veterinário não possui consultas ativas.');
                 console.error(err);
             }
         }
@@ -93,7 +105,9 @@ const VetList = () => {
             <main className="admin-content">
                 <div className="admin-page-header">
                     <h1>Gerenciar Veterinários</h1>
-                    <button className="add-new-button"><FaPlus /> Adicionar Novo</button>
+                    <button className="add-new-button" onClick={() => setIsModalOpen(true)}>
+                        <FaPlus /> Adicionar Novo
+                    </button>
                 </div>
 
                 <div className="admin-filters">
@@ -103,25 +117,29 @@ const VetList = () => {
                     </div>
                     <select value={specialtyFilter} onChange={(e) => setSpecialtyFilter(e.target.value)}>
                         <option value="">Todas as Especialidades</option>
-                        {specialties.map(spec => <option key={spec} value={spec}>{spec}</option>)}
+                        {specialityOptions.map(spec => (
+                            <option key={spec} value={spec}>
+                                {spec.replace(/_/g, " ").charAt(0) + spec.replace(/_/g, " ").slice(1).toLowerCase()}
+                            </option>
+                        ))}
                     </select>
                 </div>
-                
+
                 {loading && <p>Carregando veterinários...</p>}
                 {error && <p className="error-message">{error}</p>}
-                
+
                 {!loading && !error && (
                     <div className="admin-card-grid">
                         {vets.map(vet => (
                             <div key={vet.id} className="admin-card">
                                 {editingId === vet.id ? (
-                                    <> {/* MODO DE EDIÇÃO */}
+                                    <>
                                         <div className="card-body-admin">
                                             <div className="form-group-card"><label>Nome</label><input type="text" name="name" value={editFormData.name} onChange={handleFormChange} className="card-input" /></div>
                                             <div className="form-group-card"><label>CRMV</label><input type="text" name="crmv" value={editFormData.crmv} onChange={handleFormChange} className="card-input" /></div>
                                             <div className="form-group-card"><label>Especialidade</label>
-                                                <select name="specialty" value={editFormData.specialty} onChange={handleFormChange} className="card-input">
-                                                    {specialties.map(s => <option key={s} value={s}>{s}</option>)}
+                                                <select name="specialityenum" value={editFormData.specialityenum} onChange={handleFormChange} className="card-input">
+                                                    {specialityOptions.map(s => <option key={s} value={s}>{s.replace(/_/g, " ")}</option>)}
                                                 </select>
                                             </div>
                                             <div className="form-group-card"><label>Email</label><input type="email" name="email" value={editFormData.email} onChange={handleFormChange} className="card-input" /></div>
@@ -132,14 +150,14 @@ const VetList = () => {
                                         </div>
                                     </>
                                 ) : (
-                                    <> {/* MODO DE VISUALIZAÇÃO */}
+                                    <>
                                         <div className="card-header-admin">
-                                            <img src={vet.imageurl} alt={vet.name} className="card-avatar" />
+                                            <img src={vet.imageurl} alt={vet.name} className="card-avatar" onError={(e) => { e.target.onerror = null; e.target.src='https://i.pravatar.cc/150' }}/>
                                             <span className="card-title">{vet.name}</span>
                                         </div>
                                         <div className="card-body-admin">
                                             <p><strong>CRMV:</strong> {vet.crmv}</p>
-                                            <p><strong>Especialidade:</strong> {vet.specialityenum}</p>
+                                            <p><strong>Especialidade:</strong> {vet.specialityenum.replace(/_/g, " ")}</p>
                                             <p><strong>Email:</strong> {vet.email}</p>
                                         </div>
                                         <div className="card-actions-admin">
@@ -153,6 +171,9 @@ const VetList = () => {
                     </div>
                 )}
             </main>
+            
+            {isModalOpen && <AddVetModal onClose={() => setIsModalOpen(false)} onVetAdded={handleVetAdded} />}
+            
             <Footer />
         </div>
     );

@@ -15,3 +15,30 @@
 .card-footer { background-color: white; padding: 20px 25px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #555; display: flex; justify-content: center; align-items: center; border-top: 1px solid #f0f0f0; text-align: center; }
 .bottom-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 @media (max-width: 768px) { .bottom-cards { grid-template-columns: 1fr; } }
+
+/* Adicione este código ao final do arquivo Dashboard.css */
+
+.test-email-button {
+  background-color: #4CAF50; /* Verde para indicar uma ação de teste/sucesso */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  margin-top: 20px; /* Espaçamento do texto acima */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.test-email-button:hover {
+  background-color: #45a049; /* Verde mais escuro no hover */
+  transform: translateY(-2px);
+}
+
+.test-email-button:disabled {
+  background-color: #9E9E9E; /* Cinza quando desabilitado */
+  cursor: not-allowed;
+  transform: translateY(0);
+}

@@ -21,3 +21,94 @@
 .report-actions { display: flex; justify-content: center; margin-top: 30px; }
 .generate-report-button { background-color: #8D7EFB; color: white; padding: 12px 35px; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; text-decoration: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(141, 126, 251, 0.4); }
 .generate-report-button:hover { background-color: #7a6ae8; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(141, 126, 251, 0.5); }
+
+.report-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end; /* Alinha os itens na parte inferior */
+    gap: 20px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1; /* Permite que os grupos cresçam */
+}
+
+.filter-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.filter-group select,
+.filter-group input {
+    min-width: 180px; /* Largura mínima para cada filtro */
+}
+
+.generate-report-button {
+    background-color: #8D7EFB;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 48px; /* Mesma altura dos inputs/selects */
+    margin-bottom: 0; /* Remove margem padrão se houver */
+}
+
+.generate-report-button:hover {
+    background-color: #7a6ae8;
+}
+
+.patient-list {
+    list-style: none;
+    padding: 0;
+    column-count: 2;
+}
+
+.patient-list li {
+    background-color: #f9f7ff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.action-button {
+    background-color: #8D7EFB;
+    color: white;
+    padding: 0 25px; /* padding horizontal */
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 48px; 
+    align-self: flex-end; /* Alinha com a base dos inputs */
+}
+
+.action-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.action-button:hover:not(:disabled) {
+    background-color: #7a6ae8;
+}
+
+/* NOVO: Estilo para o botão de PDF */
+.action-button.pdf {
+    background-color: #4CAF50; /* Verde */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-button.pdf:hover:not(:disabled) {
+    background-color: #45a049;
+}

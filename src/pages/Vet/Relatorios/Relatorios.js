@@ -6,15 +6,20 @@ import { FaChartBar, FaUserPlus, FaFileMedicalAlt } from 'react-icons/fa';
 import '../css/styles.css';
 
 const VetRelatorios = () => {
+    // NOVO: Estados para dados do relatório
     const [reportData, setReportData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const fetchReport = async () => {
+            setLoading(true);
             try {
+                // NOVO: Chamada à API para buscar o relatório
                 const response = await api.get('/veterinary/me/monthly-report');
                 setReportData(response.data);
             } catch (error) {
+                setError("Não foi possível carregar o relatório.");
                 console.error("Erro ao buscar relatório", error);
             } finally {
                 setLoading(false);
@@ -24,7 +29,23 @@ const VetRelatorios = () => {
     }, []);
 
     if (loading) {
-        return <div>Carregando relatório...</div>;
+        return (
+            <div className="vet-page">
+                <HeaderVet />
+                <main className="vet-content"><p>Carregando relatório...</p></main>
+                <Footer />
+            </div>
+        );
+    }
+    
+    if (error) {
+        return (
+            <div className="vet-page">
+                <HeaderVet />
+                <main className="vet-content"><p className="error-message">{error}</p></main>
+                <Footer />
+            </div>
+        );
     }
     
     return (
@@ -59,7 +80,19 @@ const VetRelatorios = () => {
                         </div>
                     </div>
                 </div>
-                {/* ... (resto da página de relatórios) ... */}
+                
+                <div className="report-section">
+                    <h3>Pacientes Atendidos no Mês</h3>
+                    {reportData?.patientsAttended && reportData.patientsAttended.length > 0 ? (
+                        <ul className="patient-list">
+                            {reportData.patientsAttended.map((patient, index) => (
+                                <li key={index}>{patient}</li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>Nenhum paciente atendido este mês.</p>
+                    )}
+                </div>
             </main>
             <Footer />
         </div>
