@@ -10,7 +10,6 @@ import LoginScreen from './src/screens/LoginScreen';
 import CadastroScreen from './src/screens/CadastroScreen';
 
 // Suas telas originais
-import HomeScreen from './src/screens/HomeScreen';
 import InicialScreen from './src/screens/InicialScreen';
 import PetList from './src/screens/PetList';
 import AgendamentoScreen from './src/screens/AgendamentoScreen.jsx';
@@ -128,7 +127,7 @@ function MainTabs() {
     >
       <Tab.Screen
         name="Home"
-        component={HomeTabStack} // Corrigido para usar HomeTabStack
+        component={PetsStack} // Agora aponta para Meus Pets
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image
@@ -164,7 +163,7 @@ function MainTabs() {
 
       <Tab.Screen
         name="Pets"
-        component={PetsStack} // Corrigido para usar PetsStack
+        component={HomeTabStack} // Agora aponta para Home
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image
