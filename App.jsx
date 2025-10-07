@@ -4,7 +4,13 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Image } from 'react-native';
+import { Image, Animated, Easing, Text } from 'react-native';
+import { useFonts } from 'expo-font';
+import {
+  Poppins_400Regular,
+  Poppins_700Bold,
+} from '@expo-google-fonts/poppins';
+import { Geologica_700Bold } from '@expo-google-fonts/geologica';
 import { LinearGradient } from 'expo-linear-gradient';
 import LoginScreen from './src/screens/LoginScreen';
 import CadastroScreen from './src/screens/CadastroScreen';
@@ -32,6 +38,7 @@ import iconePet from './src/assets/pet.png';
 import iconeMao from './src/assets/mao.png';
 import iconePessoa from './src/assets/pessoa.png';
 import iconeVeterinario from './src/assets/veterinario.png';
+import { ChatProvider } from './src/context/ChatContext';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -47,17 +54,82 @@ const newHeaderOptions = {
   headerTitleStyle: {
     color: 'white',
     fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily: 'Geologica_700Bold',
   },
   headerTintColor: 'white',
   headerTitleAlign: 'center',
+};
+
+// Configurações de transição suave
+const slideTransition = {
+  gestureDirection: 'horizontal',
+  transitionSpec: {
+    open: {
+      animation: 'timing',
+      config: {
+        duration: 300,
+        easing: Easing.out(Easing.poly(4)),
+      },
+    },
+    close: {
+      animation: 'timing',
+      config: {
+        duration: 300,
+        easing: Easing.out(Easing.poly(4)),
+      },
+    },
+  },
+  cardStyleInterpolator: ({ current, next, layouts }) => {
+    return {
+      cardStyle: {
+        transform: [
+          {
+            translateX: current.progress.interpolate({
+              inputRange: [0, 1],
+              outputRange: [layouts.screen.width, 0],
+            }),
+          },
+        ],
+      },
+    };
+  },
+};
+
+const fadeTransition = {
+  gestureDirection: 'horizontal',
+  transitionSpec: {
+    open: {
+      animation: 'timing',
+      config: {
+        duration: 250,
+        easing: Easing.out(Easing.poly(4)),
+      },
+    },
+    close: {
+      animation: 'timing',
+      config: {
+        duration: 250,
+        easing: Easing.out(Easing.poly(4)),
+      },
+    },
+  },
+  cardStyleInterpolator: ({ current }) => {
+    return {
+      cardStyle: {
+        opacity: current.progress.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, 1],
+        }),
+      },
+    };
+  },
 };
 
 // Stack interno para a aba Pets (lista, adicionar, detalhes)
 function PetsStack() {
   return (
     <Stack.Navigator
-      screenOptions={newHeaderOptions}
+      screenOptions={{ ...newHeaderOptions, ...slideTransition }}
     >
       <Stack.Screen
         name="PetList"
@@ -81,24 +153,26 @@ function PetsStack() {
 
 function HomeTabStack() {
   return (
-    <Stack.Navigator screenOptions={newHeaderOptions}>
+    <Stack.Navigator screenOptions={{ ...newHeaderOptions, ...slideTransition }}>
       <Stack.Screen name="HomeTab" component={PrincipalScreen} options={{ title: 'Home' }} />
     </Stack.Navigator>
   );
 }
 
-function AddPetTabStack() {
+function ChatTabStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="AddPetTab" component={AdicionarPetScreen} options={{ title: 'Agendar Consulta' }} />
+    <Stack.Navigator screenOptions={{ ...newHeaderOptions, ...slideTransition }}>
+      <Stack.Screen name="ChatsList" component={require('./src/screens/ChatsListScreen').default} options={{ title: 'Conversas' }} />
+      <Stack.Screen name="Chat" component={require('./src/screens/ChatScreen').default} options={({ route }) => ({ title: route.params?.vet?.name || 'Chat' })} />
     </Stack.Navigator>
   );
 }
 
 function ConfigurationTabStack() {
   return (
-    <Stack.Navigator screenOptions={newHeaderOptions}>
+    <Stack.Navigator screenOptions={{ ...newHeaderOptions, ...slideTransition }}>
       <Stack.Screen name="ConfigurationTab" component={ConfigurationScreen} options={{ title: 'Configurações' }} />
+      <Stack.Screen name="Security" component={require('./src/screens/SecurityScreen').default} options={{ title: 'Segurança' }} />
     </Stack.Navigator>
   );
 }
@@ -144,8 +218,8 @@ function MainTabs() {
       />
 
       <Tab.Screen
-        name="AddPet"
-        component={AddPetTabStack}
+        name="Chat"
+        component={ChatTabStack}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image
@@ -261,16 +335,32 @@ function MainTabs() {
 }
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_700Bold,
+    Geologica_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null; // Pode mostrar SplashScreen ou ActivityIndicator se preferir
+  }
+
+  // Definindo fonte padrão globalmente
+  if (Text.defaultProps == null) Text.defaultProps = {};
+  Text.defaultProps.style = [{ fontFamily: 'Poppins_400Regular' }];
+
   return (
-    <NavigationContainer>
+    <ChatProvider>
+      <NavigationContainer>
       {/* Root stack para exibir a tela Inicial primeiro e depois as tabs */}
-      <RootStack.Navigator initialRouteName="Inicial" screenOptions={{ headerShown: false }}>
+      <RootStack.Navigator initialRouteName="Inicial" screenOptions={{ headerShown: false, ...fadeTransition }}>
         <RootStack.Screen name="Inicial" component={InicialScreen} />
         <RootStack.Screen name="LoginScreen" component={LoginScreen} />
         <RootStack.Screen name="CadastroScreen" component={CadastroScreen} />
         {/* <RootStack.Screen name="Principal" component={PrincipalScreen} /> */}
         <RootStack.Screen name="Main" component={MainTabs} />
       </RootStack.Navigator>
-    </NavigationContainer>
+      </NavigationContainer>
+    </ChatProvider>
   );
 }

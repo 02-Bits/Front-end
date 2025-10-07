@@ -38,12 +38,15 @@ const MenuItem = ({ iconName, text, isDelete = false, onPress }) => (
     >
       {text}
     </Text>
-    <Icon name="chevron-right" size={14} color="#CCCCCC" />
+
   </TouchableOpacity>
 );
 
 // --- Componente da Tela de Configuração Principal ---
+import { useNavigation } from '@react-navigation/native';
+
 const ConfigurationScreen = () => {
+  const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
 
   const handleDeleteAccount = () => {
@@ -62,9 +65,9 @@ const ConfigurationScreen = () => {
 
       {/* Menu de Opções */}
       <View style={styles.menuContainer}>
-        <MenuItem iconName="fingerprint" text="Segurança" />
-        <MenuItem iconName="paw" text="Pets" />
-        <MenuItem iconName="calendar-alt" text="Consultas Agendadas" />
+        <MenuItem iconName="fingerprint" text="Segurança" onPress={() => navigation.navigate('Security')} />
+        <MenuItem iconName="paw" text="Pets" onPress={() => navigation.navigate('Home') } />
+        <MenuItem iconName="calendar-alt" text="Consultas Agendadas" onPress={() => navigation.navigate('Veterinario', { screen: 'Consultas' })} />
         <MenuItem 
           iconName="trash-alt" 
           text="Excluir Conta" 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 // Ícones personalizados
 import iconeHome from '../assets/icone.png';
@@ -24,6 +25,7 @@ const useTheme = () => ({
 const PrincipalScreen = () => {
   const { colors } = useTheme();
   const styles = getStyles(colors);
+  const navigation = useNavigation();
 
   return (
     <div style={styles.container}>
@@ -51,11 +53,31 @@ const PrincipalScreen = () => {
           <h3 style={styles.sectionTitle}>Category</h3>
         </div>
         <div style={styles.categoryGrid}>
-          {/* Category buttons will be handled by Tab.Navigator in App.jsx */}
-          <CategoryButton icon={iconeHome} label="Home" styles={styles} />
-          <CategoryButton icon={iconeMao} label="Cuidados" styles={styles} />
-          <CategoryButton icon={iconeVeterinario} label="Veterinário" styles={styles} />
-          <CategoryButton icon={iconePessoa} label="Perfil" styles={styles} />
+          {/* Category buttons now navigate to different tabs */}
+          <CategoryButton 
+            icon={iconeHome} 
+            label="Home" 
+            styles={styles} 
+            onPress={() => navigation.navigate('Home')} 
+          />
+          <CategoryButton 
+            icon={iconeMao} 
+            label="Cuidados" 
+            styles={styles} 
+            onPress={() => navigation.navigate('AddPet')} 
+          />
+          <CategoryButton 
+            icon={iconeVeterinario} 
+            label="Veterinário" 
+            styles={styles} 
+            onPress={() => navigation.navigate('Veterinario')} 
+          />
+          <CategoryButton 
+            icon={iconePessoa} 
+            label="Perfil" 
+            styles={styles} 
+            onPress={() => navigation.navigate('Configurações')} 
+          />
         </div>
       </section>
 
@@ -77,7 +99,7 @@ const PrincipalScreen = () => {
 // Função para gerar os estilos
 const getStyles = (colors) => ({
   container: {
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: 'Poppins_700Bold',
     backgroundColor: '#FFFFFF',
     height: '100vh',
     display: 'flex',
@@ -247,8 +269,8 @@ const getStyles = (colors) => ({
 export default PrincipalScreen;
 
   // Componente CategoryButton
-  const CategoryButton = ({ icon, label, styles }) => (
-    <TouchableOpacity style={styles.categoryButton} activeOpacity={0.6}>
+  const CategoryButton = ({ icon, label, styles, onPress }) => (
+    <TouchableOpacity style={styles.categoryButton} activeOpacity={0.6} onPress={onPress}>
       <div style={styles.categoryIconContainer}>
         <Image source={icon} style={label === 'Cuidados' ? styles.categoryIconCare : styles.categoryIcon} />
       </div>
