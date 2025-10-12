@@ -7,7 +7,7 @@ const InicialScreen = () => {
   // Função para lidar com o clique no botão "Entrar".
   const handleLoginPress = () => {
     // Navega para a tela de Login
-    navigation.navigate('LoginScreen');
+    navigation.navigate('Login');
   };
 
   const handleRegisterPress = () => {

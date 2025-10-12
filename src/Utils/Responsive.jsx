@@ -1,17 +1,12 @@
-import { Dimensions, PixelRatio, Platform } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 import React from 'react';
 
 // Obter as dimensões da tela
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-// Tamanho base de design (pode ser ajustado conforme necessário)
-const widthBaseScale = SCREEN_WIDTH / 375;
-const heightBaseScale = SCREEN_HEIGHT / 812;
-
 // Função para calcular o tamanho normalizado com base na largura da tela
 export function normalize(size, based = 'width') {
-  const newSize = based === 'height' ? size * heightBaseScale : size * widthBaseScale;
-  return Math.round(PixelRatio.roundToNearestPixel(newSize));
+  return size;
 }
 
 // Para uso em margens, paddings, altura, largura, etc.

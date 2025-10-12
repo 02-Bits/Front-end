@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Image, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Importe o hook de navegação
+import { Colors, CommonStyles } from '../Utils/Theme';
 
 const LoginScreen = () => {
   const navigation = useNavigation(); // Obtenha o objeto de navegação
+  const [userType, setUserType] = useState('usuario'); // 'usuario' ou 'veterinario'
 
   const handleBackPress = () => {
     navigation.goBack(); // Volta para a tela anterior na pilha
@@ -11,8 +13,13 @@ const LoginScreen = () => {
 
   const handleLogin = () => {
     // Lógica de autenticação aqui
-    // Se a autenticação for bem-sucedida, navegue para a tela principal
-    navigation.navigate('Main'); // Navega para a rota 'Main' que contém as MainTabs
+    if (userType === 'veterinario') {
+      // Se a autenticação for bem-sucedida, navegue para a tela principal do veterinário
+      navigation.navigate('VeterinarianMainApp'); // Navega para a rota 'VeterinarianMainApp'
+    } else {
+      // Navega para a nova tela de dashboard do usuário
+      navigation.navigate('UserMainApp'); // Navega para a rota 'UserMainApp'
+    }
   };
 
   return (
@@ -26,6 +33,26 @@ const LoginScreen = () => {
 
       {/* O container de login completo sobre a imagem */}
       <View style={styles.loginContainer}>
+        {/* Botões de seleção de tipo de usuário */}
+        <View style={styles.userTypeContainer}>
+          <TouchableOpacity
+            style={[styles.userTypeButton, userType === 'usuario' && styles.userTypeButtonActive]}
+            onPress={() => setUserType('usuario')}
+          >
+            <Text style={[styles.userTypeButtonText, userType === 'usuario' && styles.userTypeButtonTextActive]}>
+              Usuário
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.userTypeButton, userType === 'veterinario' && styles.userTypeButtonActive]}
+            onPress={() => setUserType('veterinario')}
+          >
+            <Text style={[styles.userTypeButtonText, userType === 'veterinario' && styles.userTypeButtonTextActive]}>
+              Veterinário
+            </Text>
+          </TouchableOpacity>
+        </View>
+
         {/* Logo Pet Vita agora é uma imagem */}
         <View style={styles.logoContainer}>
           <Image
@@ -41,7 +68,7 @@ const LoginScreen = () => {
           <TextInput
             style={styles.input}
             placeholder="Exemplo@gmail.com"
-            placeholderTextColor="#888"
+            placeholderTextColor={Colors.lightPurple}
             keyboardType="email-address"
             maxLength={35} // Limit email to 35 characters
             autoCapitalize="none"
@@ -54,7 +81,7 @@ const LoginScreen = () => {
           <TextInput
             style={styles.input}
             placeholder="Senha"
-            placeholderTextColor="#888"
+            placeholderTextColor={Colors.lightPurple}
             secureTextEntry
             maxLength={20} // Limit password to 20 characters
           />
@@ -90,7 +117,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.white,
   },
   fullScreenImage: {
     position: 'absolute',
@@ -102,17 +129,40 @@ const styles = StyleSheet.create({
     opacity: 1,
   },
   loginContainer: {
+    ...CommonStyles.card,
     width: '90%',
     maxWidth: 400,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.white,
     borderRadius: 20,
     padding: 30,
     alignItems: 'center',
-    shadowColor: '#000',
+    shadowColor: Colors.purple,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 10,
     elevation: 5,
+  },
+  userTypeContainer: {
+    flexDirection: 'row',
+    marginBottom: 20,
+  },
+  userTypeButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: Colors.bluePurple,
+    marginHorizontal: 5,
+  },
+  userTypeButtonActive: {
+    backgroundColor: Colors.bluePurple,
+  },
+  userTypeButtonText: {
+    color: Colors.bluePurple,
+    fontWeight: '600',
+  },
+  userTypeButtonTextActive: {
+    color: Colors.white,
   },
   logoContainer: {
     marginBottom: 40,
@@ -129,19 +179,19 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    color: '#333',
+    color: Colors.purple,
     marginBottom: 5,
     fontWeight: '500',
   },
   input: {
     width: '100%',
     height: 50,
-    backgroundColor: '#F0F0F0',
+    backgroundColor: Colors.veryLightPurple,
     borderRadius: 10,
     paddingHorizontal: 15,
     fontSize: 16,
     borderWidth: 1,
-    borderColor: '#CCC',
+    borderColor: Colors.lightPurple,
   },
   rememberForgotContainer: {
     width: '100%',
@@ -159,29 +209,31 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: Colors.lightPurple,
     marginRight: 10,
   },
   rememberMeText: {
     fontSize: 14,
-    color: '#333',
+    color: Colors.purple,
   },
   forgotPasswordText: {
     fontSize: 14,
-    color: '#8D7EFB',
+    color: Colors.bluePurple,
     fontWeight: '600',
   },
   loginButton: {
+    ...CommonStyles.button,
     width: '100%',
     height: 50,
-    backgroundColor: '#8D7EFB',
+    backgroundColor: Colors.bluePurple,
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 15,
   },
   loginButtonText: {
-    color: '#FFFFFF',
+    ...CommonStyles.buttonText,
+    color: Colors.white,
     fontSize: 18,
     fontWeight: 'bold',
   },
@@ -192,7 +244,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backButtonText: {
-    color: '#8D7EFB',
+    color: Colors.bluePurple,
     fontSize: 16,
     fontWeight: '600',
   },

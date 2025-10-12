@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Colors, CommonStyles } from '../Utils/Theme';
 
 const mockVets = [
   {
@@ -67,25 +68,19 @@ const ChatsListScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#EFEFF4', paddingTop: 8 },
+  container: { flex: 1, backgroundColor: Colors.veryLightPurple, paddingTop: 8 },
   itemContainer: {
+    ...CommonStyles.card,
     flexDirection: 'row',
     paddingVertical: 18,
     paddingHorizontal: 20,
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.white,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#D5D5D5',
+    borderColor: Colors.lightPurple,
     marginHorizontal: 16,
     marginBottom: 20,
-    // iOS shadow
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 5,
-    // Android shadow
-    elevation: 4,
   },
   avatar: { width: 66, height: 66, borderRadius: 33, marginRight: 18 },
   textContainer: { flex: 1 },
@@ -94,15 +89,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  name: { fontSize: 17, fontWeight: 'bold', color: '#2D2D2D' },
-  time: { fontSize: 12, color: '#A0A0A0' },
-  subtitle: { fontSize: 14, color: '#555', marginTop: 6 },
+  name: { fontSize: 17, fontWeight: 'bold', color: Colors.purple },
+  time: { fontSize: 12, color: Colors.lightPurple },
+  subtitle: { fontSize: 14, color: Colors.darkGray, marginTop: 6 },
   unreadSubtitle: { color: '#000', fontWeight: '600' },
   unreadDot: {
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#8D7EFB',
+    backgroundColor: Colors.bluePurple,
     marginRight: 6,
   },
   separator: { height: 1, backgroundColor: 'transparent' },

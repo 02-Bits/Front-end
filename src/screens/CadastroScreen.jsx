@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Image, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Colors, CommonStyles } from '../Utils/Theme';
 
 const CadastroScreen = () => {
   const navigation = useNavigation(); // Obtenha o objeto de navegação
@@ -60,7 +61,7 @@ const CadastroScreen = () => {
           <TextInput
             style={styles.input}
             placeholder="Nome"
-            placeholderTextColor="#888"
+            placeholderTextColor={Colors.lightPurple}
             value={name}
             onChangeText={handleNameChange}
             maxLength={50} // Limit name to 50 characters
@@ -72,7 +73,7 @@ const CadastroScreen = () => {
           <TextInput
             style={styles.input}
             placeholder="Exemplo@gmail.com"
-            placeholderTextColor="#888"
+            placeholderTextColor={Colors.lightPurple}
             keyboardType="email-address"
             value={email}
             onChangeText={setEmail}
@@ -86,7 +87,7 @@ const CadastroScreen = () => {
           <TextInput
             style={styles.input}
             placeholder="00 00000-0000"
-            placeholderTextColor="#888"
+            placeholderTextColor={Colors.lightPurple}
             keyboardType="phone-pad"
             value={phone}
             onChangeText={handlePhoneChange}
@@ -99,7 +100,7 @@ const CadastroScreen = () => {
           <TextInput
             style={styles.input}
             placeholder="Senha"
-            placeholderTextColor="#888"
+            placeholderTextColor={Colors.lightPurple}
             secureTextEntry
             value={password}
             onChangeText={setPassword}
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.white,
   },
   fullScreenImage: {
     position: 'absolute',
@@ -142,17 +143,12 @@ const styles = StyleSheet.create({
     opacity: 1,
   },
   loginContainer: {
+    ...CommonStyles.card,
     width: '90%',
     maxWidth: 400,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 20,
+    backgroundColor: Colors.white,
     padding: 30,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
-    elevation: 5,
   },
   logoContainer: {
     marginBottom: 40,
@@ -169,33 +165,30 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    color: '#333',
+    color: Colors.darkGray,
     marginBottom: 5,
     fontWeight: '500',
   },
   input: {
     width: '100%',
     height: 50,
-    backgroundColor: '#F0F0F0',
+    backgroundColor: Colors.veryLightPurple,
     borderRadius: 10,
     paddingHorizontal: 15,
     fontSize: 16,
     borderWidth: 1,
-    borderColor: '#CCC',
+    borderColor: Colors.lightPurple,
   },
   registerButton: {
+    ...CommonStyles.button,
     width: '100%',
     height: 50,
-    backgroundColor: '#8D7EFB',
-    borderRadius: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: Colors.bluePurple,
     marginBottom: 15,
   },
   registerButtonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: 'bold',
+    ...CommonStyles.buttonText,
+    color: Colors.white,
   },
   backButton: {
     width: '100%',
@@ -204,7 +197,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backButtonText: {
-    color: '#8D7EFB',
+    color: Colors.bluePurple,
     fontSize: 16,
     fontWeight: '600',
   },

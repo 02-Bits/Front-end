@@ -3,15 +3,16 @@ import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 // Recomenda-se usar uma biblioteca de ícones como react-native-vector-icons
 import Icon from 'react-native-vector-icons/FontAwesome5'; // Ou similar
 import DeleteConfirmationModal from '../components/DeleteConfirmationModal';
+import { Colors, CommonStyles } from '../Utils/Theme';
 
 // --- Definições de Cores ---
 const COLORS = {
-  background: '#FFFFFF', // BRANCO PURO
-  text: '#333333',
-  border: '#EEEEEE',
-  delete: '#E64A19', // Vermelho/Laranja para "Excluir"
-  iconSafe: '#4C2F8A', // Roxo/Azul escuro para ícones normais
-  avatarBg: '#F4EFF2', // Branco-rosado claro do círculo superior
+  background: Colors.white, // BRANCO PURO
+  text: Colors.darkGray,
+  border: Colors.lightPurple,
+  delete: Colors.red, // Vermelho/Laranja para "Excluir"
+  iconSafe: Colors.purple, // Roxo/Azul escuro para ícones normais
+  avatarBg: Colors.veryLightPurple, // Branco-rosado claro do círculo superior
 };
 // --- Componente de Item de Menu ---
 const MenuItem = ({ iconName, text, isDelete = false, onPress }) => (
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 50, // Espaço do topo da tela
-    backgroundColor: COLORS.background, // Fundo BRANCO
+    backgroundColor: Colors.white, // Fundo BRANCO
   },
 
   // Cabeçalho e Avatar
@@ -107,14 +108,14 @@ const styles = StyleSheet.create({
   userAvatar: {
     width: 120,
     height: 120,
-    backgroundColor: COLORS.avatarBg,
+    backgroundColor: Colors.veryLightPurple,
     borderRadius: 60,
     marginBottom: 15,
   },
   username: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: COLORS.text,
+    color: Colors.purple,
   },
 
   // Menu
@@ -122,11 +123,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   menuItem: {
+    ...CommonStyles.card,
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 18,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
+    borderBottomColor: Colors.lightPurple,
   },
   // O último item não precisa de borda inferior, isso seria tratado com FlatList ou lógica de índice em um app real
   
@@ -138,7 +140,7 @@ const styles = StyleSheet.create({
   menuText: {
     flexGrow: 1,
     fontSize: 16,
-    color: COLORS.text,
+    color: Colors.purple,
   },
   
   // Estilos de Excluir Conta

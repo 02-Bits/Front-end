@@ -2,6 +2,7 @@ import React, { useState, useLayoutEffect, useContext, useEffect } from 'react';
 import { View, Text, FlatList, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { ChatContext } from '../context/ChatContext';
+import { Colors, CommonStyles } from '../Utils/Theme';
 
 const ChatScreen = () => {
   const route = useRoute();
@@ -39,24 +40,24 @@ useEffect(() => {
 
   const roleColors = {
     user: {
-      primary: '#1976D2',
-      background: '#E3F2FD',
+      primary: Colors.bluePurple,
+      background: Colors.veryLightPurple,
     },
     vet: {
-      primary: '#2E7D32',
-      background: '#E8F5E9',
+      primary: Colors.purple,
+      background: Colors.veryLightPurple,
     },
     admin: {
-      primary: '#7B1FA2',
-      background: '#F3E5F5',
+      primary: Colors.purple,
+      background: Colors.veryLightPurple,
     },
     services: {
-      primary: '#F57C00',
-      background: '#FFF3E0',
+      primary: Colors.purple,
+      background: Colors.veryLightPurple,
     },
     pharmacy: {
-      primary: '#C2185B',
-      background: '#FCE4EC',
+      primary: Colors.purple,
+      background: Colors.veryLightPurple,
     },
   };
 
@@ -115,7 +116,7 @@ useEffect(() => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#FFFFFF' },
+  container: { flex: 1, backgroundColor: Colors.white },
   listContent: { paddingHorizontal: 16, paddingTop: 16, paddingBottom: 100 },
   messageWrapper: { marginBottom: 16, maxWidth: '70%' },
   alignStart: { alignSelf: 'flex-start' },
@@ -123,48 +124,44 @@ const styles = StyleSheet.create({
   sender: { fontWeight: '600', fontSize: 14, marginBottom: 4 },
   senderRight: { fontWeight: '600', fontSize: 14, marginTop: 4, textAlign: 'right' },
   messageContainer: {
+    ...CommonStyles.card,
     paddingVertical: 16,
     paddingHorizontal: 12,
     borderRadius: 18,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
   },
   otherMessage: {
-    backgroundColor: '#F0EBFF',
+    backgroundColor: Colors.veryLightPurple,
   },
   userMessage: {
-    backgroundColor: '#8D7EFB',
+    backgroundColor: Colors.bluePurple,
   },
-  messageText: { fontSize: 16, lineHeight: 22, color: '#333' },
+  messageText: { fontSize: 16, lineHeight: 22, color: Colors.darkGray },
   inputContainer: {
     flexDirection: 'row',
     padding: 12,
     borderTopWidth: 1,
-    borderColor: '#E0E0E0',
-    backgroundColor: '#FFFFFF',
+    borderColor: Colors.lightPurple,
+    backgroundColor: Colors.white,
   },
   textInput: {
     flex: 1,
     height: 48,
     borderWidth: 1,
-    borderColor: '#CCC',
+    borderColor: Colors.lightPurple,
     borderRadius: 24,
     paddingHorizontal: 16,
     fontSize: 16,
-    backgroundColor: '#F9F9F9',
+    backgroundColor: Colors.veryLightPurple,
   },
   sendButton: {
-    backgroundColor: '#1976D2',
+    backgroundColor: Colors.bluePurple,
     borderRadius: 24,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
     marginLeft: 10,
   },
-  sendButtonText: { color: '#FFFFFF', fontWeight: '600', fontSize: 16 },
+  sendButtonText: { color: Colors.white, fontWeight: '600', fontSize: 16 },
 });
 
 export default ChatScreen;
