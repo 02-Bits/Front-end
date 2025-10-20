@@ -11,8 +11,7 @@ import LoginScreen from './src/screens/LoginScreen';
 import CadastroScreen from './src/screens/CadastroScreen';
 import InicialScreen from './src/screens/InicialScreen';
 import { ChatProvider } from './src/context/ChatContext';
-import UserMainApp from './src/navigation/UserMainApp';
-import VeterinarianMainApp from './src/navigation/VeterinarianMainApp';
+import { UserMainApp, VeterinarianMainApp } from './src/navigation/NavigationConsolidated';
 import PrincipalScreen from './src/screens/PrincipalScreen';
 
 const RootStack = createNativeStackNavigator();
