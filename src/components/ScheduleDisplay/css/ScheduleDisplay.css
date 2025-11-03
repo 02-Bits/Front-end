@@ -1,0 +1,55 @@
+.schedule-display-container {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.schedule-display-container h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.schedule-display-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif;
+}
+
+.schedule-display-table th, .schedule-display-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.schedule-display-table thead tr {
+    background-color: #f9f7ff;
+}
+
+.schedule-display-table th {
+    font-weight: 600;
+    color: #555;
+}
+
+.schedule-display-table .off-day {
+    color: #999;
+}
+
+.status-pill {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-pill.working {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-pill.off {
+    background-color: #f8d7da;
+    color: #721c24;
+}

@@ -188,7 +188,7 @@ const ScheduleAppointment = () => {
                         </div>
                         <div className="form-actions">
                             <button type="submit" className="submit-button" disabled={loading}>Enviar Solicitação</button>
-                            <Link to="/consultas" className="cancel-button">Cancelar</Link>
+                            <Link to="/consultas" className="cancel-button" style={{backgroundColor: '#FF0000'}}>Cancelar</Link>
                         </div>
                     </form>
                 </div>

@@ -1,0 +1,39 @@
+.employee-nav-aside {
+    width: 240px;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    padding: 2rem 0;
+    flex-shrink: 0;
+}
+
+.employee-nav-aside nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.employee-nav-aside nav li {
+    margin-bottom: 0.5rem;
+}
+
+.employee-nav-aside nav a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    color: #555;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.employee-nav-aside nav a:hover {
+    background-color: #f4f4f4;
+    color: #8A2BE2;
+}
+
+.employee-nav-aside nav a.active {
+    background-color: #f0e6ff;
+    color: #8A2BE2;
+    border-left-color: #8A2BE2;
+}

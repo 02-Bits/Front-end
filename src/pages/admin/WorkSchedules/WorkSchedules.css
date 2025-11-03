@@ -1,0 +1,50 @@
+.schedule-container {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif;
+}
+
+.schedule-table th, .schedule-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.schedule-table thead tr {
+    background-color: #f9f7ff;
+}
+
+.schedule-table th {
+    font-weight: 600;
+    color: #555;
+}
+
+.schedule-table input[type="time"], .schedule-table input[type="checkbox"] {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 0.95rem;
+}
+
+.schedule-table input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.schedule-table input:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.schedule-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+}

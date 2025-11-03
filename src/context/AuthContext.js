@@ -8,25 +8,26 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Função para carregar dados do usuário a partir do token
   const loadUserFromToken = async () => {
-    const token = localStorage.getItem('authToken');
+    // ALTERADO: Tenta buscar o token primeiro no localStorage, depois no sessionStorage
+    const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
         if (decodedToken.exp * 1000 > Date.now()) {
-          // Define o token no header para a próxima requisição
           api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-          // Busca os dados completos do usuário
           const response = await api.get(`/users/me?_t=${new Date().getTime()}`);
-          // CORREÇÃO: Armazena o objeto de usuário completo, não apenas o token decodificado
           setUser(response.data);
         } else {
+          // Limpa ambos os storages se o token estiver expirado
           localStorage.removeItem('authToken');
+          sessionStorage.removeItem('authToken');
         }
       } catch (error) {
         console.error("Erro ao carregar usuário a partir do token:", error);
         localStorage.removeItem('authToken');
+        sessionStorage.removeItem('authToken');
       }
     }
     setLoading(false);
@@ -36,21 +37,25 @@ export const AuthProvider = ({ children }) => {
     loadUserFromToken();
   }, []);
 
-  const login = async (email, password) => {
+  // ALTERADO: A função de login agora aceita o parâmetro 'rememberMe'
+  const login = async (email, password, rememberMe = false) => {
     try {
       const response = await api.post('/auth/login', { email, password });
       const { token } = response.data;
 
-      localStorage.setItem('authToken', token);
-      // Define o token no header para as requisições seguintes
+      // Decide onde armazenar o token com base na escolha do usuário
+      if (rememberMe) {
+        localStorage.setItem('authToken', token);
+      } else {
+        sessionStorage.setItem('authToken', token);
+      }
+
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       
-      // ===== ALTERAÇÃO PRINCIPAL AQUI =====
-      // Após o login, busca os dados completos do usuário para ter a imageurl
       const userProfileResponse = await api.get(`/users/me?_t=${new Date().getTime()}`);
-      setUser(userProfileResponse.data); // Armazena o perfil completo no estado
+      setUser(userProfileResponse.data);
 
-      return userProfileResponse.data; // Retorna o perfil completo
+      return userProfileResponse.data;
 
     } catch (error) {
       console.error("Erro no login:", error);
@@ -60,13 +65,15 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null);
+    // ALTERADO: Limpa o token de ambos os storages para garantir um logout completo
     localStorage.removeItem('authToken');
-    delete api.defaults.headers.common['Authorization']; // Limpa o header da api
+    sessionStorage.removeItem('authToken');
+    delete api.defaults.headers.common['Authorization'];
     window.location.href = '/'; 
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, loading, loadUserFromToken }}>
       {!loading && children}
     </AuthContext.Provider>
   );

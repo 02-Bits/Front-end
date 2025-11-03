@@ -229,16 +229,16 @@ const PetsDetails = () => {
                                 </div>
                             </div>
                             <div className="profile-actions">
-                                <Link to="/pets" className="back-button">Voltar</Link>
                                 {isEditing ? (
                                     <>
-                                        <button type="button" className="cancel-button" onClick={handleCancelClick}>Cancelar</button>
+                                        <button type="button" className="cancel-button" style={{backgroundColor: '#FF0000'}} onClick={handleCancelClick}>Cancelar</button>
                                         <button type="submit" className="save-button">Salvar</button>
                                     </>
                                 ) : (
                                     <>
-                                        <button type="button" className="decline-button" onClick={handleDelete}>Remover Pet</button>
                                         <button type="button" className="edit-button" onClick={handleEditClick}>Editar</button>
+                                        <button type="button" className="decline-button" onClick={handleDelete} style={{width: '150px'}}>Remover Pet</button>
+                                        <Link to="/pets" className="back-button">Voltar</Link>
                                     </>
                                 )}
                             </div>

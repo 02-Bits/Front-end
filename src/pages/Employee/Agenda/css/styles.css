@@ -1,0 +1,43 @@
+.calendario-container {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+.month-title {
+    text-align: center;
+    color: #555;
+    text-transform: capitalize;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+.dia-semana {
+  text-align: center;
+  font-weight: 600;
+  color: #a491d9;
+  padding-bottom: 10px;
+}
+.dia-celula {
+  background-color: #fdfcff;
+  border: 1px solid #f0eaff;
+  border-radius: 10px;
+  min-height: 100px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.dia-celula.vazio { background-color: transparent; border: none; }
+.numero-dia { font-weight: 500; color: #9c89ce; }
+.marcadores-container { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+.marcador-consulta {
+  width: 10px;
+  height: 10px;
+  background-color: #8D7EFB;
+  border-radius: 50%;
+  cursor: pointer;
+}
