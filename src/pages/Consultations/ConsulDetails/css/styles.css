@@ -1,0 +1,213 @@
+/* Estilo da página de detalhes */
+.consul-details-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+}
+
+.welcome-section {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.welcome-title {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.consul-status {
+  font-size: 1.2rem;
+  color: #8E44AD;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+  background-color: #f0eef5;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+
+/* Container externo */
+.details-wrapper {
+  background-color: #E5DBF7;
+  padding: 40px 20px;
+  border-radius: 25px;
+  margin: 0 auto 40px auto;
+  width: 90%;
+  max-width: 700px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Container do conteúdo */
+.details-container {
+  background-color: #EBE4F4;
+  width: calc(100% - 60px);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 0 auto;
+}
+
+/* Seção da foto do pet */
+.pet-photo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.pet-selected-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #8E44AD;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+}
+
+.pet-name {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin: 0;
+}
+
+/* Informações da consulta */
+.consul-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.info-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #555;
+  width: 120px;
+  margin-right: 15px;
+}
+
+.info-value {
+  flex: 1;
+  color: #2c3e50;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Botões */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.cancel-button {
+  background-color: #FF6B6B;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: #FF5252;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+.back-button {
+  background-color: #f5f5f5;
+  color: #555;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+/* Status da consulta - cores diferentes */
+.status-pending {
+  background-color: #FFF3CD;
+  color: #856404;
+}
+
+.status-confirmed {
+  background-color: #D4EDDA;
+  color: #155724;
+}
+
+.status-canceled {
+  background-color: #F8D7DA;
+  color: #721C24;
+}
+
+/* Ajustes específicos para a página de consulta */
+.consul-details-page .detail-value {
+  min-height: auto;
+  word-break: break-word;
+}
+
+/* Botão de cancelar com hover específico */
+.remove-button[style*="background-color: #FF6B6B"]:hover {
+  background-color: #FF5252 !important;
+  box-shadow: 0 2px 5px rgba(255, 107, 107, 0.3) !important;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .details-wrapper {
+    width: 95%;
+    padding: 20px 15px;
+  }
+  
+  .details-container {
+    width: calc(100% - 30px);
+    padding: 20px;
+  }
+  
+  .info-group {
+    flex-direction: column;
+  }
+  
+  .info-label {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .cancel-button,
+  .back-button {
+    width: 100%;
+  }
+  
+  .pet-selected-image {
+    width: 140px;
+    height: 140px;
+  }
+}

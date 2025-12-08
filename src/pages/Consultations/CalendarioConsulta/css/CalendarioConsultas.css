@@ -1,0 +1,144 @@
+.pagina-calendario {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.calendario-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #f9f7ff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', sans-serif;
+}
+
+.filtros-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.filtro-item select,
+.filtro-item input {
+  padding: 10px 15px;
+  border: 1px solid #dcd6f7;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #4a4a4a;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  min-width: 200px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 15px top 50%;
+  background-size: .65em auto;
+  padding-right: 40px;
+}
+
+.filtro-item select {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23B77EFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+}
+
+.filtro-item select:focus,
+.filtro-item input:focus {
+  outline: none;
+  border-color: #B77EFF;
+  box-shadow: 0 0 0 2px rgba(183, 126, 255, 0.3);
+}
+
+.pesquisa-container {
+  position: relative;
+}
+
+.pesquisa-container input {
+  padding-right: 40px;
+  background-image: none;
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #B77EFF;
+}
+
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.dia-semana {
+  text-align: center;
+  font-weight: 600;
+  color: #a491d9;
+  padding-bottom: 10px;
+}
+
+.dia-celula {
+  background-color: #fff;
+  border: 1px solid #f0eaff;
+  border-radius: 10px;
+  min-height: 120px;
+  padding: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.dia-celula:not(.vazio):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+.dia-celula.vazio {
+  background-color: transparent;
+  border: none;
+}
+
+.numero-dia {
+  font-weight: 500;
+  color: #9c89ce;
+}
+
+.marcadores-container {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.marcador-consulta {
+  width: 10px;
+  height: 10px;
+  background-color: #b388ff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.marcador-consulta:hover {
+  background-color: #8d7efb;
+}
+
+@media (max-width: 768px) {
+  .filtros-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filtro-item select,
+  .filtro-item input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .dia-celula {
+    min-height: 80px;
+  }
+}

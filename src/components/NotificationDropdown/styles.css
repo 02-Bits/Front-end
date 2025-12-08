@@ -1,0 +1,49 @@
+.notification-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 20px);
+    width: 350px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+.dropdown-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+.notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.notification-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+.notification-item:last-child {
+    border-bottom: none;
+}
+.notification-item:hover {
+    background-color: #f9f7ff;
+}
+.notification-text {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+.notification-time {
+    display: block;
+    font-size: 0.75rem;
+    color: #aaa;
+}

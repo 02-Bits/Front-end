@@ -1,0 +1,449 @@
+/* Estilo da página */
+.pet-profile-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+}
+
+/* Seção dos botões de status */
+.status-section {
+  text-align: center;
+  padding: 2.5rem 0;
+}
+
+.status-buttons {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin: 0 auto;
+  width: fit-content;
+}
+/* =================================================== */
+/* ESTILOS GERAIS PARA PÁGINAS DE CONSULTA E CALENDÁRIO */
+/* =================================================== */
+.pet-profile-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  padding-top: 90px; /* Espaço para o header fixo */
+}
+
+.main-content-consultation {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.main-content-consultation h1 {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.pet-profile-container {
+  background-color: #F5F0FF;
+  width: 100%;
+  min-height: 350px;
+  margin: 0 auto 40px auto;
+  padding: 30px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.status-section {
+  text-align: center;
+  padding: 1rem 0;
+}
+.status-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+  width: fit-content;
+  flex-wrap: wrap;
+}
+.status-button {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #E0C8F5;
+  color: #333;
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-decoration: none;
+}
+.status-button:hover {
+  transform: translateY(-2px);
+  background-color: #d1b3f2;
+}
+.status-button.active {
+  background-color: #8D7EFB;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.consultas-list-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.pet-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.pet-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pet-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.pet-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Espaçamento entre os textos */
+}
+
+.pet-name {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 700;
+}
+
+.card-subtitle {
+    font-size: 1.1rem;
+    color: #555;
+    font-weight: 500;
+}
+
+/* --- NOVA CLASSE PARA O TEXTO MENOR --- */
+.card-subtitle-small {
+    font-size: 0.9rem;
+    color: #777;
+}
+/* ------------------------------------- */
+
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+.status-badge.pendente { background-color: #ffc107; color: #333; }
+.status-badge.agendada { background-color: #007bff; }
+.status-badge.finalizada { background-color: #28a745; }
+.status-badge.cancelada { background-color: #dc3545; }
+.status-badge.recusada { background-color: #6c757d; }
+
+.add-consulta-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #dcd6f7;
+}
+
+.action-button-primary {
+  background-color: #8D7EFB;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(141, 126, 251, 0.2);
+}
+
+.action-button-primary:hover {
+  background-color: #7a6ae8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(141, 126, 251, 0.3);
+}
+
+/* =================================================== */
+/* ESTILOS ESPECÍFICOS PARA O CALENDÁRIO               */
+/* =================================================== */
+.calendario-container {
+  max-width: 1100px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', sans-serif;
+}
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+.dia-semana {
+  text-align: center;
+  font-weight: 600;
+  color: #a491d9;
+  padding-bottom: 10px;
+}
+.dia-celula {
+  background-color: #fdfcff;
+  border: 1px solid #f0eaff;
+  border-radius: 10px;
+  min-height: 120px;
+  padding: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+.dia-celula:not(.vazio):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+.dia-celula.vazio {
+  background-color: transparent;
+  border: none;
+}
+.numero-dia {
+  font-weight: 500;
+  color: #9c89ce;
+}
+.marcadores-container {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.marcador-consulta {
+  width: 10px;
+  height: 10px;
+  background-color: #b388ff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.marcador-consulta:hover {
+  background-color: #8d7efb;
+}
+
+.status-button {
+  padding: 18px 40px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #C79DFD;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  min-width: 150px;
+  text-decoration: none; /* Removendo sublinhado */
+  display: inline-block; /* Para manter o layout como botão */
+  text-align: center; /* Centralizar texto */
+}
+
+/* Especificamente para links que são botões */
+a.status-button {
+  text-decoration: none;
+}
+
+.status-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  text-decoration: none; /* Garantir que não apareça sublinhado no hover */
+}
+
+.status-button.active {
+  background-color: #8D7EFB;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Container principal */
+.pet-profile-container {
+  background-color: #EBE4F4;
+  width: 50%;
+  min-height: 350px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 40px;
+}
+
+/* Card do pet */
+.pet-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  min-height: 150px;
+}
+
+/* Foto do pet */
+.pet-photo-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #8E44AD;
+  flex-shrink: 0;
+}
+
+.pet-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Informações do pet */
+.pet-info {
+  flex: 1;
+}
+
+.pet-details {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pet-name {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.pet-gender {
+  background-color: #3498db;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+}
+
+/* Botão de detalhes */
+.details-button {
+  background: none;
+  border: none;
+  color: #C79DFD;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: absolute;
+  right: 25px;
+  text-decoration: none; /* Removendo sublinhado */
+}
+
+.details-button:hover {
+  background-color: #f3e5f5;
+  text-decoration: none; /* Garantir que não apareça sublinhado no hover */
+}
+
+.arrow {
+  font-size: 1.2rem;
+}
+
+/* Botão Adicionar Pet */
+.add-pet-button {
+  background-color: #8D7EFB;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 32px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 20px auto;
+  text-decoration: none; /* Removendo sublinhado */
+  text-align: center;
+  width: fit-content;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.add-pet-button:hover {
+  background-color: #B77EFF;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 12px rgba(142, 68, 173, 0.3);
+  text-decoration: none; /* Garantir que não apareça sublinhado no hover */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .pet-profile-container {
+    width: 90%;
+    padding: 20px;
+  }
+  
+  .pet-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .details-button {
+    position: static;
+    margin-top: 15px;
+    justify-content: center;
+  }
+  
+  .status-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .status-button {
+    width: 100%;
+    margin: 5px 0;
+    border-radius: 20px;
+  }
+  
+  .add-pet-button {
+    padding: 14px 28px;
+    font-size: 1.1rem;
+  }
+}
